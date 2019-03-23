@@ -1,4 +1,4 @@
-
+defaultTasks 'hello', 'upper'
 task hello {
     doLast {
         println 'Hello world!'
@@ -31,4 +31,24 @@ task0.dependsOn task2,task3
 
 task intro(dependsOn: hello) {
     println "I'm Gradle"
+}
+task myTask {
+    ext.myProperty = "myValue"
+}
+
+task printTaskProperties {
+    println myTask.myProperty
+}
+gradle.taskGraph.whenReady {taskGraph ->
+    if (taskGraph.hasTask(release)) {
+        version = '1.0'
+    } else {
+        version = '1.0-SNAPSHOT'
+    }
+}
+task distribution {
+    println "We build the zip with version=$version"
+}
+task release(dependsOn: 'distribution') {
+    println 'We release now'
 }
