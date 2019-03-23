@@ -1,4 +1,4 @@
 include ':myjava'
-//include(':core)
+include(':multiproject')
 //project(':core').projectDir = new File(settingsDir, 'core-xxx') 
 
