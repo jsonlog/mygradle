@@ -40,6 +40,7 @@ task myTask {
 task printTaskProperties {
     println myTask.myProperty
 }
+def version
 gradle.taskGraph.whenReady {taskGraph ->
     if (taskGraph.hasTask(release)) {
         version = '1.0'
@@ -61,13 +62,12 @@ task check2{
 	println project.projectDir;
 	println project.buildDir;
 }
-def dest = "dest"
+def dest = "dest2"
 task copy(type: Copy) {
     from "source"
     into dest
     println dest
 }
-println dest
 apply plugin: "java"
 
 ext {
@@ -91,3 +91,24 @@ task printProperties {
     println emailNotification
     sourceSets.matching { it.purpose == "production" }.each { println it.name }
 }   
+
+def classesDir = new File('build/classes')
+task resources {
+    classesDir.mkdirs()
+    // do something
+}
+task compile(dependsOn: 'resources') {
+    if (classesDir.isDirectory()) {
+        println 'The class directory exists. I can operate'
+    }
+    // do something
+}  
+//task printProps {
+//    println commandLineProjectProp
+  //  println gradlePropertiesProp
+   // println systemProjectProp
+   // println envProjectProp
+   // println System.properties['system']
+//}
+//gradle -q -PcommandLineProjectProp=commandLineProjectPropValue -Dorg.gradle.project.systemProjectProp=systemPropertyValue printProps
+apply from: 'other.gradle'    
