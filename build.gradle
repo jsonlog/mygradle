@@ -11,7 +11,7 @@ hello.doFirst {
 hello.doLast {
     println "Greetings from the $hello.name task."
 }
-task hello2 {
+tasks.create(name: 'hello2') {
     println 'Hello world!'
 }
 
@@ -58,9 +58,13 @@ println version
 task check2{
 	println name;
 	println project.name;
-	println project.path;
+	//println project.path;
 	println project.projectDir;
 	println project.buildDir;
+	println hello.name;
+	println project.hello.name;
+println tasks.hello.name
+println tasks['hello'].name 
 }
 def dest = "dest2"
 task copy(type: Copy) {
@@ -112,3 +116,15 @@ task compile(dependsOn: 'resources') {
 //}
 //gradle -q -PcommandLineProjectProp=commandLineProjectPropValue -Dorg.gradle.project.systemProjectProp=systemPropertyValue printProps
 apply from: 'other.gradle'    
+task configure {
+    def pos = configure(new java.text.FieldPosition(10)) {
+        beginIndex = 1
+        endIndex = 5
+    }
+//pos = new java.text.FieldPosition(10)
+    // Apply the script
+    //apply from: 'other.gradle', to: pos
+    println pos
+    println pos.beginIndex
+    println pos.endIndex
+}  
