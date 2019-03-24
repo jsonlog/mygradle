@@ -11,8 +11,9 @@ hello.doFirst {
 hello.doLast {
     println "Greetings from the $hello.name task."
 }
-tasks.create(name: 'hello2') {
-    println 'Hello world!'
+tasks.create(name: 'hello',overwrite: true) {
+    description 'task de script ion'
+    println 'Hello world22!'
 }
 
 task upper {
@@ -20,6 +21,9 @@ task upper {
     println "Original: " + someString
     println "Upper case: " + someString.toUpperCase()
 }
+upper.onlyIf { !project.hasProperty('skipupper')}
+//> gradle hello -PskipHello
+
 task count {
     4.times { print "$it " }
 4.times { counter ->
@@ -127,4 +131,44 @@ task configure {
     println pos
     println pos.beginIndex
     println pos.endIndex
+}
+
+//logger.error('An error log message.')
+//logger.warn('A warning log message.')
+//logger.lifecycle('A lifecycle info log message.')
+/*logger.trace('A trace log message.')    
+logger.info('An info log message.')
+logger.debug('A debug log message.')
+logger.quiet('An info log message which is always logged.')
+
+import org.slf4j.Logger
+import org.slf4j.LoggerFactory
+Logger slf4jLogger = LoggerFactory.getLogger('some-logger')
+slf4jLogger.info('An info log message logged using SLF4j')  
+logging.captureStandardOutput LogLevel.INFO
+println 'A message which is logged at INFO level'  
+
+task logInfo {
+    logging.captureStandardOutput LogLevel.INFO
+    doFirst {
+        println 'A task message which is logged at INFO level'
+    }
+}
+*/  
+//gradle -I init.gradle build
+
+//apply plugin: org.gradle.api.plugins.JavaPlugin  
+
+apply plugin: JavaPlugin  
+task show {
+    println relativePath(compileJava.destinationDir)
+    println relativePath(processResources.destinationDir)
 }  
+
+apply plugin: 'java'
+compileJava.destinationDir = file("$buildDir/output/classes")
+task show2 {
+    println relativePath(compileJava.destinationDir)
+}
+
+ 
