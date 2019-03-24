@@ -1,4 +1,5 @@
 include ':myjava'
-include(':multiproject')
+//include(':multiproject')
+include ":multiprojec","mygroovy"
 //project(':core').projectDir = new File(settingsDir, 'core-xxx') 
 
