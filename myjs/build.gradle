@@ -1,0 +1,71 @@
+
+buildscript {
+ repositories {
+     //http://maven.aliyun.com/nexus/content/repositories/central/
+    // maven{ url 'http://maven.aliyun.com/nexus/content/groups/public/' }
+    // maven{ url 'http://maven.aliyun.com/nexus/content/repositories/jcenter'}
+    // mavenCentral()
+    // jcenter(){url 'http://jcenter.bintray.com/'}
+    jcenter(){url 'http://maven.aliyun.com/nexus/content/repositories/jcenter'}
+ }
+ dependencies {
+ classpath "com.eriwen:gradle-js-plugin:2.12.0" }
+}
+apply plugin: "com.eriwen.gradle.js"
+
+// allprojects {
+//     repositories {
+//         jcenter(){url 'http://jcenter.bintray.com/'}
+//     }
+// }
+
+// plugins {
+//   id "com.eriwen.gradle.js" version "2.14.1"
+// }
+// repositories {
+//     jcenter()
+// }
+
+javascript.source {
+    custom {
+        js {
+            srcDir "src"
+            include "*.js"
+            exclude "externs.js"
+        }
+    }
+}
+
+task clean(type: Delete) {
+    delete buildDir
+}
+
+// Combine JS files
+task combine(type: com.eriwen.gradle.js.tasks.CombineJsTask) {
+    source = javascript.source.custom.js.files
+    dest = "${buildDir}/all.js"
+}
+
+// requireJs {
+//     source = javascript.source.custom.js.files
+//     dest = file("$buildDir/main.js")
+//     requirejs.buildprofile = new File("src/test/resources/requirejs/build.js")
+// }
+
+// minifyJs {// Minify with Google Closure Compiler
+//     dest = file("${buildDir}/all-min.js")
+//     source = javascript.source.custom.js.files
+//     closure {
+//         warningLevel = 'VERBOSE'
+//         compilationLevel = 'SIMPLE_OPTIMIZATIONS'
+//         externs = files("src/test/resources/externs.js")
+//     }
+// }
+
+// javascript.source.custom.js.files.eachWithIndex { jsFile, idx ->
+//     tasks.create(name: "dominify${idx}", type: com.eriwen.gradle.js.tasks.MinifyJsTask) {
+//         source = jsFile
+//         dest = "${buildDir}/${jsFile.name}"
+//     }
+// }
+// task individualMinify(dependsOn: tasks.matching { Task task -> task.name.startsWith("dominify")})

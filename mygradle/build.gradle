@@ -58,13 +58,13 @@ task distribution {
 task release(dependsOn: 'distribution') {
     println 'We release now'
 }
-println version
+println version //null
 task check2{
-	println name;
-	println project.name;
+	println name; //check2
+	println project.name; //mygradle
 	//println project.path;
-	println project.projectDir;
-	println project.buildDir;
+	println project.projectDir; //pwd
+	println project.buildDir; //pwd/build
 	println hello.name;
 	println project.hello.name;
 println tasks.hello.name
@@ -161,14 +161,14 @@ task logInfo {
 
 apply plugin: JavaPlugin  
 task show {
-    println relativePath(compileJava.destinationDir)
-    println relativePath(processResources.destinationDir)
+    println relativePath(compileJava.destinationDir) //build/classes/java/main
+    println relativePath(processResources.destinationDir) //build/resources/main
 }  
 
 apply plugin: 'java'
 compileJava.destinationDir = file("$buildDir/output/classes")
 task show2 {
-    println relativePath(compileJava.destinationDir)
+    println relativePath(compileJava.destinationDir) //build/output/classes
     println 'end:mygralde------------------------------------------'
 }
 

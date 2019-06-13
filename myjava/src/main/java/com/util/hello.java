@@ -38,6 +38,14 @@ public class hello {
 //            System.out.println(rand2.nextInt(20));
             System.out.println(k);
             System.out.println(p);
+            /*
+            j2-j3-j-k-p--
+            18
+            *
+            18
+            15
+            13
+             */
         }
     }
     static void array(){
