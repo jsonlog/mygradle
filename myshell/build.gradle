@@ -3,7 +3,7 @@ task build {
 task preBuild {
     println 'do prebuild stuff:'
 }
-// task myPrebuildTask(type: Exec) {
+// task myshell(type: Exec) {
 //     workingDir "$projectDir/mySubDir"
 //   doLast {
 //      exec {
@@ -17,10 +17,11 @@ task preBuild {
 //     //     commandLine 'sh', './shell.sh'
 //     // }
 // }
-task myPrebuildTask {
-    println("Executing myScript")
-    def proc = "myshell/shell.sh".execute()
+task myshell {
+    println("Executing myShell")
+	println project.projectDir;
+    def proc = "${project.projectDir}/shell.sh".execute()
     proc.waitForProcessOutput(System.out, System.err)
 }
 build.dependsOn preBuild
-preBuild.dependsOn myPrebuildTask
+preBuild.dependsOn myshell
