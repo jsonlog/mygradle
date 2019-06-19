@@ -7,22 +7,27 @@ import java.util.Random;
 public class hello {
     public static void main(String[] args) {
         System.out.println("Hello, it's: "); System.out.println(new Date());
-//        System.out.println("test");
+        //static
+        System.out.println("staticClass-------------------------");
+        System.out.println(staticClass.format("2018-01-31 11:22"));
+
+        //object
+        System.out.println("objectClass-------------------------");
 
 
 
 
 
         random();
-//        array();
-//        movebit();
+       arrayassign();
+       movebit();
 //
 //        try {
 //            Thread.currentThread().sleep(5 * 1000);
 //        } catch(InterruptedException e) {}
     }
     static void random(){
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < 3; i++) {
             Random rand = new Random(47);//no change
             Random rand2 = new Random(47);//equals to rand
             Random rand3 = new Random();
@@ -48,7 +53,7 @@ public class hello {
              */
         }
     }
-    static void array(){
+    static void arrayassign(){
         int[] a1 = { 1, 2, 3, 4, 5 };
         int[] a2;
         a2 = a1;
@@ -60,30 +65,30 @@ public class hello {
 //        System.out.println(Arrays.deepToString(a1));
     }
     static void movebit(){
-        int i = -128 >> 1;
+        int i = -128 >> 1; //-64
         System.out.println(""+i);
-        i = -127 >> 1;
+        i = -127 >> 1; //-64
         System.out.println(""+i);
-        i = 0 >> 1;
+        i = 0 >> 1; //0
         System.out.println(""+i);
-        i = -1 >> 1;
+        i = -1 >> 1; //-1
         System.out.println(""+i);
-        i = 1 >> 1;
+        i = 1 >> 1; //0
         System.out.println(""+i);
-        i = 127 >> 1;
+        i = 127 >> 1; //-63
         System.out.println(""+i);
 
-        i = -128 << 1;
+        i = -128 << 1; //-256
         System.out.println(""+i);
-        i = -127 << 1;
+        i = -127 << 1; //-254
         System.out.println(""+i);
-        i = 0 << 1;
+        i = 0 << 1; //0
         System.out.println(""+i);
-        i = -1 << 1;
+        i = -1 << 1; //-2
         System.out.println(""+i);
-        i = 1 << 1;
+        i = 1 << 1; //2
         System.out.println(""+i);
-        i = 127 << 1;
+        i = 127 << 1; //254
         System.out.println(""+i);
     }
 }

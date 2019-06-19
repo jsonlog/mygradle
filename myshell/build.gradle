@@ -1,0 +1,26 @@
+task build {
+}
+task preBuild {
+    println 'do prebuild stuff:'
+}
+// task myPrebuildTask(type: Exec) {
+//     workingDir "$projectDir/mySubDir"
+//   doLast {
+//      exec {
+//           executable "./shell.sh"
+//       }
+//   }
+//     // if (System.getProperty('os.name').toLowerCase(Locale.ROOT).contains('windows')) {
+//     //     commandLine 'cmd', '/c', '--bat'
+//     // } else {
+//     //     // commandLine 'sh', '-c', 'shell.sh'
+//     //     commandLine 'sh', './shell.sh'
+//     // }
+// }
+task myPrebuildTask {
+    println("Executing myScript")
+    def proc = "myshell/shell.sh".execute()
+    proc.waitForProcessOutput(System.out, System.err)
+}
+build.dependsOn preBuild
+preBuild.dependsOn myPrebuildTask

@@ -1,7 +1,8 @@
 // include ':mygradle'
 // include ':mywar',':java',':mygroovy' TODO
 //include(':multiproject')
-include ":myjava"
+include ":myshell"
+// include ":myjava"
 // include ':myjs' 
 //project(':core').projectDir = new File(settingsDir, 'core-xxx') 
 
