@@ -18,9 +18,12 @@ public class hello {
 
 
 
-        random();
-       arrayassign();
-       movebit();
+        // random();
+        // arrayassign();
+        // movebit();
+
+
+        
 //
 //        try {
 //            Thread.currentThread().sleep(5 * 1000);
@@ -65,30 +68,56 @@ public class hello {
 //        System.out.println(Arrays.deepToString(a1));
     }
     static void movebit(){
-        int i = -128 >> 1; //-64
-        System.out.println(""+i);
+        System.out.println(">>右移:");
+        int i = -128;
+        System.out.println(Integer.toBinaryString(i).replace("111111111111111111111111","")+"**"+i);
+        i = -128 >> 1; //-64
+        System.out.println(Integer.toBinaryString(i).replace("111111111111111111111111","")+"**"+i+"****");
+        i = -127;
+        System.out.println(Integer.toBinaryString(i).replace("111111111111111111111111","")+"**"+i);
         i = -127 >> 1; //-64
-        System.out.println(""+i);
+        System.out.println(Integer.toBinaryString(i).replace("111111111111111111111111","")+"**"+i+"****");
+        i = 0;
+        System.out.println(Integer.toBinaryString(i).replace("111111111111111111111111","")+"**"+i);
         i = 0 >> 1; //0
-        System.out.println(""+i);
+        System.out.println(Integer.toBinaryString(i).replace("111111111111111111111111","")+"**"+i+"****");
+        i = -1;
+        System.out.println(Integer.toBinaryString(i).replace("111111111111111111111111","")+"**"+i);
         i = -1 >> 1; //-1
-        System.out.println(""+i);
+        System.out.println(Integer.toBinaryString(i).replace("111111111111111111111111","")+"**"+i+"****");
+        i = 1;
+        System.out.println("0000000"+Integer.toBinaryString(i).replace("111111111111111111111111","")+"**"+i);
         i = 1 >> 1; //0
-        System.out.println(""+i);
+        System.out.println("0000000"+Integer.toBinaryString(i).replace("111111111111111111111111","")+"**"+i+"****");
+        i = 127;
+        System.out.println("0"+Integer.toBinaryString(i).replace("111111111111111111111111","")+"**"+i);
         i = 127 >> 1; //-63
-        System.out.println(""+i);
+        System.out.println("00"+Integer.toBinaryString(i).replace("111111111111111111111111","")+"**"+i+"****");
 
+        System.out.println("<<左移:");
+        i = -128;
+        System.out.println(Integer.toBinaryString(i).replace("111111111111111111111111","")+"**"+i);
         i = -128 << 1; //-256
-        System.out.println(""+i);
+        System.out.println(Integer.toBinaryString(i).replace("111111111111111111111111","")+"**"+i+"****");
+        i = -127;
+        System.out.println(Integer.toBinaryString(i).replace("111111111111111111111111","")+"**"+i);
         i = -127 << 1; //-254
-        System.out.println(""+i);
+        System.out.println(Integer.toBinaryString(i).replace("111111111111111111111111","")+"**"+i+"****");
+        i = 0;
+        System.out.println(Integer.toBinaryString(i).replace("111111111111111111111111","")+"**"+i);
         i = 0 << 1; //0
-        System.out.println(""+i);
+        System.out.println(Integer.toBinaryString(i).replace("111111111111111111111111","")+"**"+i+"****");
+        i = -1;
+        System.out.println(Integer.toBinaryString(i).replace("111111111111111111111111","")+"**"+i);
         i = -1 << 1; //-2
-        System.out.println(""+i);
+        System.out.println(Integer.toBinaryString(i).replace("111111111111111111111111","")+"**"+i+"****");
+        i = 1;
+        System.out.println("0000000"+Integer.toBinaryString(i).replace("111111111111111111111111","")+"**"+i);
         i = 1 << 1; //2
-        System.out.println(""+i);
+        System.out.println("000000"+Integer.toBinaryString(i).replace("111111111111111111111111","")+"**"+i+"****");
+        i = 127;
+        System.out.println("0"+Integer.toBinaryString(i).replace("111111111111111111111111","")+"**"+i);
         i = 127 << 1; //254
-        System.out.println(""+i);
+        System.out.println(Integer.toBinaryString(i).replace("111111111111111111111111","")+"**"+i+"****");
     }
 }
