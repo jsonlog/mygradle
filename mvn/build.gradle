@@ -1,0 +1,25 @@
+// gradle init --type pom
+// gradle build
+apply plugin: 'java'
+apply plugin: 'maven'
+
+
+group = 'com.101tec'
+version = '0.7-dev'
+sourceCompatibility = 1.6
+
+
+// task writeNewPom << {
+//     pom {
+//         project {
+//             inceptionYear '2008'
+//             licenses {
+//                 license {
+//                     name 'The Apache Software License, Version 2.0'
+//                     url 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+//                     distribution 'repo'
+//                 }
+//             }
+//         }
+//     }.writeTo("$buildDir/pom.xml")
+// }
