@@ -2,20 +2,25 @@ package com.util;
 
 import java.util.Arrays;
 import java.util.Date;
+import java.util.Formatter;
 import java.util.Random;
+import java.util.*;
 
 public class hello {
     public static void main(String[] args) {
         System.out.println("Hello, it's: "); System.out.println(new Date());
         //static
-        System.out.println("staticClass-------------------------");
-        System.out.println(staticClass.format("2018-01-31 11:22"));
+        // System.out.println("staticClass-------------------------");
+        // System.out.println(staticClass.format("2018-01-31 11:22"));
 
         //object
-        System.out.println("objectClass-------------------------");
+        // objectClass objectclass = new objectClass();
+        // System.out.println("objectClass-------------------------");
 
 
+        System.out.println(Integer.toBinaryString(12390));
 
+        common();
 
 
         // random();
@@ -23,11 +28,55 @@ public class hello {
         // movebit();
 
 
-        
+
 //
 //        try {
 //            Thread.currentThread().sleep(5 * 1000);
 //        } catch(InterruptedException e) {}
+    }
+    static void common(){
+        boolean myboolbean = true;
+        System.out.format("%b%n",myboolbean);
+        char mychar = 'x';
+        System.out.format("%c%c%d\n",mychar,98,(int)mychar);              String s="lov23next234dn3423javaee";
+        List<String> ss = new ArrayList<String>();
+        for(String sss:s.replaceAll("[^0-9]", ",").split(",")){
+            if (sss.length()>0)
+                ss.add(sss);
+        }
+        System.out.println(ss);
+        
+        int myshort = Short.MIN_VALUE;
+        System.out.format("Short.MIN_VALUE%d Short.MAX_VALUE%d octal:%o hexadecimal:%x%n",myshort,Short.MAX_VALUE,127,127);
+        System.out.println(Integer.toBinaryString(myshort).replaceAll("1111111111111111",""));
+        System.out.println("0"+Integer.toBinaryString(Short.MAX_VALUE));
+        int myint = Integer.MIN_VALUE;
+        System.out.format("Integer.MIN_VALUE%d Integer.MAX_VALUE%d%n",myint,Integer.MAX_VALUE);
+        System.out.println(Integer.toBinaryString(myint));
+        System.out.println("0"+Integer.toBinaryString(Integer.MAX_VALUE));
+        Long mylong = Long.MAX_VALUE;
+        System.out.println("Long.MIN_VALUE"+Long.MIN_VALUE+" Integer.MAX_VALUE"+mylong);
+        System.out.println(Long.toBinaryString(Long.MIN_VALUE));
+        System.out.println("0"+Long.toBinaryString(mylong));
+        Float myfloat = Float.MAX_VALUE;
+        Formatter f = new Formatter(System.out);
+        f.format("%f %f%n",myfloat,3.1415926F);
+        Double defaultDouble = 3.1415926;
+        f.format("%f %f%n",Double.MAX_VALUE,defaultDouble);
+        System.out.println(String.format("%.2f",3.1415926d));
+
+        System.out.println(5/2);
+        System.out.println(7/3);
+        System.out.println(Math.round(5/2d)); //3
+        System.out.println(Math.round(7/3d));
+        System.out.println(-Math.round(Math.abs(-5/2d))); //-3 myround
+        System.out.println(-Math.round(Math.abs(-7/3d)));
+    }
+    public double myround(double num){//rint
+        double a=Math.signum(num); //判断是正数负数还是0，负数返回-1.0，正数返回1.0
+        if(a<0.0)
+            return 0.0-Math.round(Math.abs(num));
+        return Math.round(num);
     }
     static void random(){
         for (int i = 0; i < 3; i++) {

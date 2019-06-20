@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>W3Cschool教程(w3cschool.cn)</title>
+</head>
+<body>
+<p id="demop">我的第一个段落</p>
+<button onclick="myFunction()">点我</button>
+<button onclick="myFunction2(this)">点我2</button>
+<button onclick='this.innerHTML=Date()'>现在的时间是?</button>∫∫
+<button onclick="getElementById('demop').innerHTML=Date()">现在的时间是?</button>
+<script>
+document.write("<h1>这是一个标题</h1>");
+//此处可使用 window.carName
+//全局变量是 window 对象: 所有数据变量都属于 window 对象。
+//用 let 来代替 var 来声明变量，就可以把变量限制在当前代码块中。
+common()
+function common(){
+  myboolean = false
+  console.log(myboolean)
+  mychar = 'x';
+  console.log(mychar);
+  console.log(mychar.charCodeAt(0));
+  console.log(String.fromCharCode(98));
+  var mystring = "bx23";
+  console.log(mystring.charAt(1));
+  console.log(mystring.charCodeAt(1));
+  console.log(+mystring.replace(/[^0-9]/ig,""));
+  intstring = "23";
+  console.log(JSON.parse(intstring),parseInt(intstring));//parseInt(mystring.toString())
+
+  var str = '123sdfsdf456sdffs789'
+  var numArr = str.match(/\d+/g)
+  // numArr = str.match(/\d+(\.\d+)*/g) //兼容
+  console.log(numArr)  // => ["123", "456", "789"]
+  // console.log(+numArr.join('')) // => 123456789 // 也可以把拼接起来
+
+  var str = '123.456sdfsdf456.789'
+  var numArr = str.match(/\d+\.\d+/g)
+  console.log(numArr)  //=> ["123.456", "456.789"]// 这个就没法拼接了
+
+
+
+  console.log("Number.MAX_VALUE "+Number.MAX_VALUE);
+}
+
+
+function myFunction()
+{
+    carName = "Volvo";
+    document.write(Date());
+}
+function myFunction2(call)
+{
+  if(call.innerHTML == "this"){
+    call.innerHTML="点我2";
+  }else{
+    call.innerHTML="this";
+  }
+}
+//window.alert(5 + 6);
+document.getElementById("demop").innerHTML = "段落已修改。";
+
+a = 5; b = 6; c = a + b;
+console.log(c);
+n1=3.14
+n2=123e-5
+n3=(5 + 6) * 10
+s1='John Doe'
+var character = s1[7];
+var sln = s1.length;
+var answer = "He is called \"Johnny\"";
+s2="John Doe"//将声明一个全局变量 carname，即使它在函数内执行。
+var y = new String("John");//不要创建 String 对象。它会拖慢执行速度，并可能产生其他副作用：
+array=[40, 100, 1, 5, 25, 10]
+var a=new Array("Saab","Volvo","BMW");
+a.sort(function(v1,v2){
+            return v1-v2;
+           });
+       console.lo
+for (x in mycars)
+{
+document.write(mycars[x] + "<br />")
+}
+// delete a[2];
+//stack queue
+//a.push(4) a.unshift
+///a.pop(a) a.shift
+//a.splice(绝对索引值3,删除该索引次数 0即为插入f否则为替换,array...)
+
+var cars=new Array();
+cars[0]="Saab";
+cars[1]="Volvo";
+cars[2]="BMW";
+var cars=new Array;
+var cars=new Object;
+
+var person={
+firstname : "John",
+lastname  : "Doe",
+id        :  5566
+};//Object
+name=person.lastname;
+name=person["lastname"];
+
+
+
+var x, y, z;
+x = 5
+y = 6;
+z = (x + y) * 10;
+var carname="Volvo";
+var carname;//变量 carname 的值依然是 "Volvo"
+var carname=null;
+
+// 我不会执行
+document.write("你好 \
+ W3Cschool!");//折行
+	var x=5;
+	document.getElementById("demo").innerHTML=x===5;//true绝对等于
+//==和!=操作符会进行类型强制转换
+	var x=5;
+	document.getElementById("demo").innerHTML=x!=="5";//true不绝对等于
+  //JavaScript逻辑运算符的优先级是：！、&& 、||。
+  typeof NaN                    // 返回 number
+  "John".constructor                 // 返回函数 String()  { [native code] }
+  myArray.constructor.toString().indexOf("Array") > -1;//判断是否数组
+  String(x)         // 将变量 x 转换为字符串并返回
+  (123).toString();false.toString()
+  Number("3.14")    // 返回 3.14
+  var y = "5";      // y 是一个字符串
+  var x = + y;      // x 是一个数字
+  var n = str.search("w3cschool");
+  var res = str.replace(/microsoft/i, "w3cschool");//正则表达式
+  var patt = /e/;
+  var patt1=new RegExp("e");
+  patt.test("The best things in life are free!");//true 字符串中含有 "e"
+  /e/.exec("The best things in life are free!");
+  patt1.compile("d");//二次检索
+
+
+  var text = '{"employees":[' +
+  	'{"firstName":"John","lastName":"Doe" },' +
+  	'{"firstName":"Anna","lastName":"Smith" },' +
+  	'{"firstName":"Peter","lastName":"Jones" }]}';
+  obj = JSON.parse(text);
+  document.getElementById("demo").innerHTML =
+  	obj.employees[1].firstName + " " + obj.employees[1].lastName;
+
+  var x = function (a, b) {return a * b};
+  var z = x(4, 3);
+
+  (function () {
+    return arguments.length; //调用自己,返回参数个数arguments[0] [1]...
+})();
+function myFunction(x, y) {
+    // if (y === undefined) {
+    //       y = 0;
+    // }
+    y = y || 0;//undefined 为false
+    return x * y;
+}
+function myFunction(a, b) {
+    return a * b;
+}
+myFunction.call(myObject, 10, 2);      // 返回 20
+myArray = [10,2];
+myFunction.apply(myObject, myArray);   // 返回 20
+var add = (function () {
+    var counter = 0;
+    return function () {return counter += 1;}
+})();//闭包
+
+var x=document.getElementById("main");
+var y=x.getElementsByTagName("p");
+var z=document.getElementsByClassName("intro");
+
+document.getElementById("p2").style.color="blue";
+document.getElementById("myBtn").onclick=function(){displayDate()};
+
+
+document.getElementById("myBtn").addEventListener("click", function(){
+    alert("Hello World!");
+});//注意不是onclick
+
+element.removeEventListener("mousemove", myFunction);
+
+window.addEventListener("resize", function(){
+    document.getElementById("demo").innerHTML = Math.random();
+});
+
+document.getElementById("myBtn").addEventListener("click", function() {
+    myFunction(p1, p2);
+});
+function myFunction(a, b) {
+    var result = a * b;
+    document.getElementById("demo").innerHTML = result;
+}
+////
+var para=document.createElement("p");
+var node=document.createTextNode("This is new.");
+para.appendChild(node);
+
+var element=document.getElementById("div1");
+element.appendChild(para);
+
+////
+var child=document.getElementById("p1");
+// var parent=document.getElementById("div1");
+// parent.removeChild(child);
+child.parentNode.removeChild(child);
+
+////
+var myNumber=128;
+myNumber.toString(16);   // returns 80 //16进制
+myNumber.toString(8);    // returns 200
+myNumber.toString(2);    // returns 10000000
+
+isNaN("apple"); // returns true Not_a_Number
+
+var x = 123;
+var y = new Number(123);
+(x === y) // is false because x is a number and y is an object.
+
+
+  Array.prototype.ucase=function()
+{
+  for (i=0;i<this.length;i++)
+  {this[i]=this[i].toUpperCase();}
+}
+// debugger;
+// document.execCommand(sCommand[,交互方式, 动态参数])
+// javascript:alert(navigator.userAgent) //or appVersion
+
+function myFunction(){
+	var x;
+	var r=confirm("按下按钮!");//window.
+	if (r==true){
+		x="你按下了\"确定\"按钮!";
+	}
+	else{
+		x="你按下了\"取消\"按钮!";
+	}
+	document.getElementById("demo").innerHTML=x;
+}
+function myFunction(){
+	var x;
+	var person=prompt("请输入\n你的名字","Harry Potter");
+	if (person!=null && person!=""){
+	    x="你好 " + person + "！今天感觉如何？";
+	    document.getElementById("demo").innerHTML=x;
+	}
+}
+
+
+var myVar=setInterval(function(){myTimer()},1000);
+function myTimer(){
+	var d=new Date();
+	var t=d.toLocaleTimeString();
+	document.getElementById("demo").innerHTML=t;
+}
+function myStopFunction(){
+	clearInterval(myVar);
+}//间隔指定的毫秒数不停地执行指定的代码。
+
+//JS的几种跳转方式：
+//window.open(”url“)
+function openWin(tag,obj)
+{
+obj.target="_blank";
+obj.href = "Web/Substation/Substation.aspx?stationno="+tag;
+obj.click();
+}
+//window.location.href='';
+
+
+
+	t=setTimeout(function(){startTime()},500);//暂停指定的毫秒数后执行指定的代码
+  // document.cookie = "username=; expires=Thu, 01 Jan 1970 00:00:00 GMT";
+</script>
+    <a href="javascript:void(alert('Warning!!!'))">点我!</a>
+<a href="#" onclick="subgo()">点我</a><!--刷新到顶部-->
+<a href="####" >test</a> <!--不让刷新方法1-->
+<a href="javascript:;" onclick="doSomething()">test</a>
+<a href="#" onclick="doSomething();return false;">什么问题都解决了,包括浏览器不兼容问题</a> //或者直接使用href=""
+<a href="#" onclick="alert();event.returnValue=false;">test</a>
+<a href="javascript:void(0)" title="关闭" onclick="delbook();return false;">关闭</a>
+<a href="javascript:void(0)" target="_self" title="关闭" onclick="delbook();">关闭</a>
+
+
+
+<a href="javascript:void(0)" onclick="subgo()">点我</a>
+<!-- #包含了一个位置信息，默认的锚是#top 也就是网页的上端。
+而javascript:void(0), 仅仅表示一个死链接。
+-->
+<p>
+您只能在 HTML 输出流中使用 <strong>document.write</strong>。
+如果您在文档已加载后使用它（比如在函数中），会覆盖整个文档。
+</p>
+<!-- <script src="myscript.js"> -->
+</body>
+</html>
