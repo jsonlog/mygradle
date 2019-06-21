@@ -5,6 +5,7 @@
 <title>W3Cschool教程(w3cschool.cn)</title>
 </head>
 <body>
+<p id="demo">段落</p>
 <p id="demop">我的第一个段落</p>
 <button onclick="myFunction()">点我</button>
 <button onclick="myFunction2(this)">点我2</button>
@@ -14,20 +15,19 @@
 document.write("<h1>这是一个标题</h1>");
 //此处可使用 window.carName
 //全局变量是 window 对象: 所有数据变量都属于 window 对象。
-//用 let 来代替 var 来声明变量，就可以把变量限制在当前代码块中。
 common()
 function common(){
-  myboolean = false
+  myboolean = false //将声明一个全局变量 carname，即使它在函数内执行。
   console.log(myboolean)
-  mychar = 'x';
+  var mychar = 'x';
   console.log(mychar);
   console.log(mychar.charCodeAt(0));
   console.log(String.fromCharCode(98));
-  var mystring = "bx23";
-  console.log(mystring.charAt(1));
+  let mystring = "bx23,4fgbt52dvg,e3"; ////用 let 来代替 var 来声明变量，就可以把变量限制在当前代码块中
+  console.log(mystring.charAt(1),mystring[0],mystring.length);
   console.log(mystring.charCodeAt(1));
   console.log(+mystring.replace(/[^0-9]/ig,""));
-  intstring = "23";
+  var intstring = "23";
   console.log(JSON.parse(intstring),parseInt(intstring));//parseInt(mystring.toString())
 
   var str = '123sdfsdf456sdffs789'
@@ -37,12 +37,64 @@ function common(){
   // console.log(+numArr.join('')) // => 123456789 // 也可以把拼接起来
 
   var str = '123.456sdfsdf456.789'
+  // var y = new String("He is called \"Johnny\"");//不要创建 String 对象。它会拖慢执行速度，并可能产生其他副作用：
   var numArr = str.match(/\d+\.\d+/g)
   console.log(numArr)  //=> ["123.456", "456.789"]// 这个就没法拼接了
 
+  var a, b;
+  myarray = [40, 100, 1, 5, 25, 10]
+  mystringfromarray = myarray.join("-");
+  myarrayfromString = mystring.split(",");
 
+  array=new Array(0,1,2,3,4);
+  array.sort(
+    function(v1,v2){
+      return v1-v2;
+    }
+  );
+  var cars=new Array;
+  var cars=new Object;
+  var cars=new Array();
+  cars[0]="Saab";
+  cars[1]="Volvo";
+  cars[2]="BMW";
+  for (x in cars)
+  {
+  document.write(cars[x] + "<br />")
+  }
 
+  my = 5; int = 6; myint = my + int;
+  console.log(myint);
+  varAll64=(5 + 6) * 10
+  console.log(varAll64);
   console.log("Number.MAX_VALUE "+Number.MAX_VALUE);
+
+  double=3.14
+  doublee=123e-5
+  console.log(double,doublee);
+  console.log(parseInt(5/2)) //丢弃小数部分,保留整数部分
+  console.log(Math.round(5/2),Math.round(-5/2),0.0-Math.round(Math.abs(-5/2))) //四舍1234五入56789
+  console.log(Math.ceil(5/2)) //向上取整,有小数就整数部分加1
+  console.log(Math.floor(5/2)) //向下取整
+
+
+  var json = '{"employees":[' +
+  	'{"firstName":"John","lastName":"Doe" },' +
+  	'{"firstName":"Anna","lastName":"Smith" },' +
+  	'{"firstName":"Peter","lastName":"Jones" }]}';
+  obj = JSON.parse(json);
+  document.getElementById("demo").innerHTML =
+    obj.employees[1].firstName + " " + obj.employees[1].lastName;
+  var mymap = {
+    1 : "test",
+    "2" : myarray,
+    'x' : "delete"
+  }
+  console.log(mymap[1]);
+  delete mymap['x'];
+  console.log(mymap['x']);
+  if(!mymap['x']) mymap['x'] = "add";
+  console.log(mymap['x']);
 }
 
 
@@ -62,39 +114,12 @@ function myFunction2(call)
 //window.alert(5 + 6);
 document.getElementById("demop").innerHTML = "段落已修改。";
 
-a = 5; b = 6; c = a + b;
-console.log(c);
-n1=3.14
-n2=123e-5
-n3=(5 + 6) * 10
-s1='John Doe'
-var character = s1[7];
-var sln = s1.length;
-var answer = "He is called \"Johnny\"";
-s2="John Doe"//将声明一个全局变量 carname，即使它在函数内执行。
-var y = new String("John");//不要创建 String 对象。它会拖慢执行速度，并可能产生其他副作用：
-array=[40, 100, 1, 5, 25, 10]
-var a=new Array("Saab","Volvo","BMW");
-a.sort(function(v1,v2){
-            return v1-v2;
-           });
-       console.lo
-for (x in mycars)
-{
-document.write(mycars[x] + "<br />")
-}
+
 // delete a[2];
 //stack queue
 //a.push(4) a.unshift
 ///a.pop(a) a.shift
 //a.splice(绝对索引值3,删除该索引次数 0即为插入f否则为替换,array...)
-
-var cars=new Array();
-cars[0]="Saab";
-cars[1]="Volvo";
-cars[2]="BMW";
-var cars=new Array;
-var cars=new Object;
 
 var person={
 firstname : "John",
@@ -125,8 +150,8 @@ document.write("你好 \
   //JavaScript逻辑运算符的优先级是：！、&& 、||。
   typeof NaN                    // 返回 number
   "John".constructor                 // 返回函数 String()  { [native code] }
-  myArray.constructor.toString().indexOf("Array") > -1;//判断是否数组
-  String(x)         // 将变量 x 转换为字符串并返回
+  myarray.constructor.toString().indexOf("Array") > -1;//判断是否数组
+  // String(x)         // 将变量 x 转换为字符串并返回
   (123).toString();false.toString()
   Number("3.14")    // 返回 3.14
   var y = "5";      // y 是一个字符串
@@ -139,14 +164,6 @@ document.write("你好 \
   /e/.exec("The best things in life are free!");
   patt1.compile("d");//二次检索
 
-
-  var text = '{"employees":[' +
-  	'{"firstName":"John","lastName":"Doe" },' +
-  	'{"firstName":"Anna","lastName":"Smith" },' +
-  	'{"firstName":"Peter","lastName":"Jones" }]}';
-  obj = JSON.parse(text);
-  document.getElementById("demo").innerHTML =
-  	obj.employees[1].firstName + " " + obj.employees[1].lastName;
 
   var x = function (a, b) {return a * b};
   var z = x(4, 3);

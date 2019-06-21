@@ -38,13 +38,40 @@ public class hello {
         boolean myboolbean = true;
         System.out.format("%b%n",myboolbean);
         char mychar = 'x';
-        System.out.format("%c%c%d\n",mychar,98,(int)mychar);              String s="lov23next234dn3423javaee";
-        List<String> ss = new ArrayList<String>();
-        for(String sss:s.replaceAll("[^0-9]", ",").split(",")){
-            if (sss.length()>0)
-                ss.add(sss);
+        System.out.format("%c%c%d\n",mychar,98,(int)mychar);              
+        String mystring="lov23next234dn3423javaee";
+        System.out.println(Character.isLetter(mystring.charAt(3)));
+        List<String> stringlist = new ArrayList<String>();
+        for(String string:mystring.replaceAll("[^0-9]", ",").split(",")){
+            if (string.length()>0)
+                stringlist.add(string);
         }
-        System.out.println(ss);
+        System.out.println(stringlist+" "+stringlist.size());
+
+        int myarray[] = { 1, 2, 3, 4, 5 };
+        int a[][] = { { 11, 12, 13, 14}, { 21, 22, 23,24 },{31,32,33,34} };
+        System.out.println(Arrays.toString(a));
+        Integer[] a1 = new Integer[] { new Integer(1),};
+        int[][] a2 = new int[2][4];
+        a2[1][0] = 21;
+        a2[1][3] = 32;
+        System.out.print(a[0][0]);
+
+        System.out.println(Arrays.toString(myarray)+" "+myarray.length);
+        char mychararray[] = mystring.toCharArray();
+        System.out.println(mychararray);
+        mystring = String.valueOf(mychararray);
+        System.out.println(mystring.length());
+        String[] myarrayfromString = mystring.split(",");
+        String mystringfromarray = String.join(",",myarrayfromString);
+
+        StringJoiner sj = new StringJoiner(":", "[", "]");
+        sj.add("George").add("Sally").add("Fred");
+        String desiredString = sj.toString();
+
+        StringBuffer roleNames = new StringBuffer(); 
+        roleNames.append("test");
+        roleNames.toString();
         
         int myshort = Short.MIN_VALUE;
         System.out.format("Short.MIN_VALUE%d Short.MAX_VALUE%d octal:%o hexadecimal:%x%n",myshort,Short.MAX_VALUE,127,127);
@@ -71,6 +98,7 @@ public class hello {
         System.out.println(Math.round(7/3d));
         System.out.println(-Math.round(Math.abs(-5/2d))); //-3 myround
         System.out.println(-Math.round(Math.abs(-7/3d)));
+
     }
     public double myround(double num){//rint
         double a=Math.signum(num); //判断是正数负数还是0，负数返回-1.0，正数返回1.0
