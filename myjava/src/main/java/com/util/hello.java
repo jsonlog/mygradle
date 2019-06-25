@@ -99,6 +99,16 @@ public class hello {
         System.out.println(-Math.round(Math.abs(-5/2d))); //-3 myround
         System.out.println(-Math.round(Math.abs(-7/3d)));
 
+        int choose = 3;
+        switch(choose){
+            case 1 : break;
+            case 3 : choose = 4;
+            case 4 : System.out.println(choose);
+            default: System.out.println("default");
+        }
+
+        for(char c : "An African Swallow".toCharArray())
+        System.out.print(c + " ");
     }
     public double myround(double num){//rint
         double a=Math.signum(num); //判断是正数负数还是0，负数返回-1.0，正数返回1.0
