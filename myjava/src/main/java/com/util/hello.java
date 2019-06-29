@@ -12,6 +12,7 @@ public class hello {
         //static
         // System.out.println("staticClass-------------------------");
         // System.out.println(staticClass.format("2018-01-31 11:22"));
+        MDtable.main(null);
 
         //object
         // objectClass objectclass = new objectClass();
@@ -46,6 +47,7 @@ public class hello {
             if (string.length()>0)
                 stringlist.add(string);
         }
+        stringlist.forEach(System.out::println);
         System.out.println(stringlist+" "+stringlist.size());
 
         int myarray[] = { 1, 2, 3, 4, 5 };
@@ -55,9 +57,9 @@ public class hello {
         int[][] a2 = new int[2][4];
         a2[1][0] = 21;
         a2[1][3] = 32;
-        System.out.print(a[0][0]);
+        System.out.println(a[0][0]);
 
-        System.out.println(Arrays.toString(myarray)+" "+myarray.length);
+        System.out.println(Arrays.toString(myarray)+" "+myarray.length+" "+java.lang.reflect.Array.getLength(myarray));
         char mychararray[] = mystring.toCharArray();
         System.out.println(mychararray);
         mystring = String.valueOf(mychararray);
@@ -110,6 +112,12 @@ public class hello {
         for(char c : "An African Swallow".toCharArray())
         System.out.print(c + " ");
     }
+
+
+
+
+
+    
     public double myround(double num){//rint
         double a=Math.signum(num); //判断是正数负数还是0，负数返回-1.0，正数返回1.0
         if(a<0.0)
