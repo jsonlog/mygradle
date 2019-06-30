@@ -10,18 +10,19 @@ public class hello {
     public static void main(String[] args) {
         System.out.println("Hello, it's: "); System.out.println(new Date());
         //static
+        MDtable.main(null);
         // System.out.println("staticClass-------------------------");
         // System.out.println(staticClass.format("2018-01-31 11:22"));
-        MDtable.main(null);
 
         //object
+        // hello objecthello = new hello();
         // objectClass objectclass = new objectClass();
         // System.out.println("objectClass-------------------------");
 
 
         System.out.println(Integer.toBinaryString(12390));
 
-        common();
+        // common();
 
 
         // random();
@@ -117,7 +118,7 @@ public class hello {
 
 
 
-    
+
     public double myround(double num){//rint
         double a=Math.signum(num); //判断是正数负数还是0，负数返回-1.0，正数返回1.0
         if(a<0.0)
