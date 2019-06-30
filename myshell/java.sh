@@ -1,3 +1,4 @@
+#!bin/sh
 if [ -d myshell ];then
     cd myjava/src/main/java;
 else

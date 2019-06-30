@@ -1,4 +1,4 @@
-# bin/sh
+#!bin/sh
 # 192
 # cat words.txt |xargs |sed "s/ /\n/g"|sort|uniq -c|sort -r|awk '{print $2" "$1}'
 
