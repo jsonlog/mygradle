@@ -7,6 +7,12 @@
 	<artifactId>myproject</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 
+<!-- Java 1.8 as the default compiler level -->
+<!-- With that setup, you can also override individual dependencies by overriding a property in your own project. For instance, to upgrade to another Spring Data release train, you would add the following to your [pom.xml](https://github.com/spring-projects/spring-boot/tree/v2.1.6.RELEASE/spring-boot-project/spring-boot-dependencies/pom.xml):
+
+<properties>
+	<spring-data-releasetrain.version>Fowler-SR2</spring-data-releasetrain.version>
+</properties> -->
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
@@ -14,5 +20,23 @@
 	</parent>
 
 	<!-- Additional lines to be added here... -->
+	<dependencies>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
+	</dependencies>
 
+	<!-- 
+	To create an executable jar 
+	The spring-boot-starter-parent POM includes <executions> configuration to bind the repackage goal. If you do not use the parent POM, you need to declare this configuration yourself.
+	-->
+	<!-- <build>
+		<plugins>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+		</plugins>
+	</build> -->
 </project>
