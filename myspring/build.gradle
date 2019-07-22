@@ -28,6 +28,12 @@ repositories {
     maven {
         url = 'http://repo.maven.apache.org/maven2'
     }
+    // mavenLocal()
+    // jcenter()
+    // mavenCentral()
+    // maven { url 'http://maven.aliyun.com/nexus/content/groups/public' }
+    // maven { url 'http://repo.spring.io/libs-release' }
+    // maven { url 'http://repo.springsource.org/repo' }
 }
 
 dependencies {
@@ -35,6 +41,7 @@ dependencies {
 	testCompile('org.springframework.boot:spring-boot-starter-test')
 
     implementation 'commons-codec:commons-codec:1.12'
+    compile 'org.springframework:spring-core'
 }
 
 group = 'com.example'
