@@ -8,9 +8,11 @@
 <p id="demo">段落</p>
 <p id="demop">我的第一个段落</p>
 <button onclick="myFunction()">点我</button>
-<button onclick="myFunction2(this)">点我2</button>
+<button id="myBtn" onclick="myFunction2(this)">点我2</button>
 <button onclick='this.innerHTML=Date()'>现在的时间是?</button>∫∫
 <button onclick="getElementById('demop').innerHTML=Date()">现在的时间是?</button>
+<div id="div1"></div>
+<p id="p1"></p>
 <script>
 document.write("<h1>这是一个标题</h1>");
 //此处可使用 window.carName
@@ -41,28 +43,6 @@ function common(){
   var numArr = str.match(/\d+\.\d+/g)
   console.log(numArr)  //=> ["123.456", "456.789"]// 这个就没法拼接了
 
-  var a, b;
-  myarray = [40, 100, 1, 5, 25, 10]
-  mystringfromarray = myarray.join("-");
-  myarrayfromString = mystring.split(",");
-
-  array=new Array(0,1,2,3,4);
-  array.sort(
-    function(v1,v2){
-      return v1-v2;
-    }
-  );
-  var cars=new Array;
-  var cars=new Object;
-  var cars=new Array();
-  cars[0]="Saab";
-  cars[1]="Volvo";
-  cars[2]="BMW";
-  for (x in cars)
-  {
-  document.write(cars[x] + "<br />")
-  }
-
   my = 5; int = 6; myint = my + int;
   console.log(myint);
   varAll64=(5 + 6) * 10
@@ -78,13 +58,42 @@ function common(){
   console.log(Math.floor(5/2)) //向下取整
 
 
-  var json = '{"employees":[' +
-  	'{"firstName":"John","lastName":"Doe" },' +
-  	'{"firstName":"Anna","lastName":"Smith" },' +
-  	'{"firstName":"Peter","lastName":"Jones" }]}';
-  obj = JSON.parse(json);
-  document.getElementById("demo").innerHTML =
-    obj.employees[1].firstName + " " + obj.employees[1].lastName;
+//length
+  myarray = [40, 100, 1, 5, 25, 10]
+  console.log(myarray.length);
+  mystringfromarray = myarray.join("-");
+  myarrayfromString = mystring.split(",");
+  var newLength = myarray.push('Orange');
+  console.log(newLength);
+  var last = myarray.pop();
+  console.log(last);
+  newLength = myarray.unshift('Banana') // add to the front
+  myarray.forEach(function (item, index, array) {
+    console.log(index,item);
+  });
+  var pos = myarray.indexOf('Banana');
+  var myarraycopy = myarray.slice();
+  var removedItem = myarray.splice(pos, 2); // this is how to remove 2* item
+  console.log(myarray,removedItem);
+  console.log(myarraycopy);
+
+
+  array = new Array(0, 1, 2, 3, 4);
+  array.sort(
+    function (v1, v2) {
+      return v1 - v2;
+    }
+  );
+  var cars = new Array;
+  var cars = new Object;
+  var cars = new Array();
+  cars[0] = "Saab";
+  cars[1] = "Volvo";
+  cars[2] = "BMW";
+  for (x in cars) {
+    document.write(cars[x] + "<br />")
+  }
+  
   var mymap = {
     1 : "test",
     "2" : myarray,
@@ -92,17 +101,54 @@ function common(){
   }
   console.log(mymap[1]);
   delete mymap['x'];
-  console.log(mymap['x']);
+  // console.log(mymap['x']);
   if(!mymap['x']) mymap['x'] = "add";
   console.log(mymap['x']);
+  for(var key in mymap){
+    console.log(key+":"+mymap[key]);
+  }
+
+//size
+  var m = new Map();
+  m.set(1, "black");
+  m.set(2, "red");
+  m.set("colors", 2);
+  m.forEach(function (item) {
+    console.log(item.toString());
+  });
+  for (var [key, value] of m) {
+    console.log(key + ' = ' + value);
+  }
+  console.log(m.get("colors"))
+  m.delete("colors")
+  console.log(m.size)
+
+  const set = new Set([1, 2, 3, 44, 5]);
+  set.add(7);
+  console.log(set.has(Math.sqrt(25)));
+  set.delete(44);
+  set.forEach(function (currentValue, key, array) {
+    console.log(currentValue+" "+array.size);
+  });
+  console.log(set.size);
+
+
+
+  var json = '{"employees":[' +
+    '{"firstName":"John","lastName":"Doe" },' +
+    '{"firstName":"Anna","lastName":"Smith" },' +
+    '{"firstName":"Peter","lastName":"Jones" }]}';
+  obj = JSON.parse(json);
+  document.getElementById("demo").innerHTML =
+    obj.employees[1].firstName + " " + obj.employees[1].lastName;
 }
 
 
-function myFunction()
-{
-    carName = "Volvo";
-    document.write(Date());
-}
+// function myFunction()
+// {
+//     carName = "Volvo";
+//     document.write(Date());
+// }
 function myFunction2(call)
 {
   if(call.innerHTML == "this"){
@@ -156,6 +202,7 @@ document.write("你好 \
   Number("3.14")    // 返回 3.14
   var y = "5";      // y 是一个字符串
   var x = + y;      // x 是一个数字
+  str = "this is w3cschool"
   var n = str.search("w3cschool");
   var res = str.replace(/microsoft/i, "w3cschool");//正则表达式
   var patt = /e/;
@@ -178,9 +225,7 @@ function myFunction(x, y) {
     y = y || 0;//undefined 为false
     return x * y;
 }
-function myFunction(a, b) {
-    return a * b;
-}
+var myObject;
 myFunction.call(myObject, 10, 2);      // 返回 20
 myArray = [10,2];
 myFunction.apply(myObject, myArray);   // 返回 20
@@ -189,11 +234,11 @@ var add = (function () {
     return function () {return counter += 1;}
 })();//闭包
 
-var x=document.getElementById("main");
+var x=document.getElementById("demo");
 var y=x.getElementsByTagName("p");
 var z=document.getElementsByClassName("intro");
 
-document.getElementById("p2").style.color="blue";
+document.getElementById("demo").style.color="blue";
 document.getElementById("myBtn").onclick=function(){displayDate()};
 
 
@@ -201,7 +246,7 @@ document.getElementById("myBtn").addEventListener("click", function(){
     alert("Hello World!");
 });//注意不是onclick
 
-element.removeEventListener("mousemove", myFunction);
+  document.getElementById("myBtn").removeEventListener("mousemove", myFunctionmove);
 
 window.addEventListener("resize", function(){
     document.getElementById("demo").innerHTML = Math.random();
@@ -210,10 +255,10 @@ window.addEventListener("resize", function(){
 document.getElementById("myBtn").addEventListener("click", function() {
     myFunction(p1, p2);
 });
-function myFunction(a, b) {
-    var result = a * b;
-    document.getElementById("demo").innerHTML = result;
-}
+// function myFunction(a, b) {
+//     var result = a * b;
+//     document.getElementById("demo").innerHTML = result;
+// }
 ////
 var para=document.createElement("p");
 var node=document.createTextNode("This is new.");
@@ -250,7 +295,7 @@ var y = new Number(123);
 // document.execCommand(sCommand[,交互方式, 动态参数])
 // javascript:alert(navigator.userAgent) //or appVersion
 
-function myFunction(){
+function myFunctionmove(){
 	var x;
 	var r=confirm("按下按钮!");//window.
 	if (r==true){
@@ -261,7 +306,7 @@ function myFunction(){
 	}
 	document.getElementById("demo").innerHTML=x;
 }
-function myFunction(){
+function myFunctionread(){
 	var x;
 	var person=prompt("请输入\n你的名字","Harry Potter");
 	if (person!=null && person!=""){
@@ -292,8 +337,8 @@ obj.click();
 //window.location.href='';
 
 
-
-	t=setTimeout(function(){startTime()},500);//暂停指定的毫秒数后执行指定的代码
+//setTimeout('startTime()',500)
+	// t=setTimeout(function(){startTime()},500);//暂停指定的毫秒数后执行指定的代码
   // document.cookie = "username=; expires=Thu, 01 Jan 1970 00:00:00 GMT";
 </script>
     <a href="javascript:void(alert('Warning!!!'))">点我!</a>

@@ -8,9 +8,12 @@ import java.util.*;
 
 public class hello {
     public static void main(String[] args) {
-        System.out.println("Hello, it's: "); System.out.println(new Date());
+        System.out.print("Hello, it's: "); System.out.println(new Date());
+        //common
+        common();
+        
         //static
-        MDtable.main(null);
+        // MDtable.main(null);
         // System.out.println("staticClass-------------------------");
         // System.out.println(staticClass.format("2018-01-31 11:22"));
 
@@ -20,14 +23,11 @@ public class hello {
         // System.out.println("objectClass-------------------------");
 
 
-        System.out.println(Integer.toBinaryString(12390));
-
-        // common();
-
 
         // random();
         // arrayassign();
         // movebit();
+        // System.out.println(Integer.toBinaryString(12390));
 
 
 
@@ -35,6 +35,7 @@ public class hello {
 //        try {
 //            Thread.currentThread().sleep(5 * 1000);
 //        } catch(InterruptedException e) {}
+        System.out.println();
     }
     static void common(){
         boolean myboolbean = true;
@@ -43,24 +44,7 @@ public class hello {
         System.out.format("%c%c%d\n",mychar,98,(int)mychar);              
         String mystring="lov23next234dn3423javaee";
         System.out.println(Character.isLetter(mystring.charAt(3)));
-        List<String> stringlist = new ArrayList<String>();
-        for(String string:mystring.replaceAll("[^0-9]", ",").split(",")){
-            if (string.length()>0)
-                stringlist.add(string);
-        }
-        stringlist.forEach(System.out::println);
-        System.out.println(stringlist+" "+stringlist.size());
 
-        int myarray[] = { 1, 2, 3, 4, 5 };
-        int a[][] = { { 11, 12, 13, 14}, { 21, 22, 23,24 },{31,32,33,34} };
-        System.out.println(Arrays.toString(a));
-        Integer[] a1 = new Integer[] { new Integer(1),};
-        int[][] a2 = new int[2][4];
-        a2[1][0] = 21;
-        a2[1][3] = 32;
-        System.out.println(a[0][0]);
-
-        System.out.println(Arrays.toString(myarray)+" "+myarray.length+" "+java.lang.reflect.Array.getLength(myarray));
         char mychararray[] = mystring.toCharArray();
         System.out.println(mychararray);
         mystring = String.valueOf(mychararray);
@@ -76,24 +60,24 @@ public class hello {
         roleNames.append("test");
         roleNames.toString();
         
-        int myshort = Short.MIN_VALUE;
-        System.out.format("Short.MIN_VALUE%d Short.MAX_VALUE%d octal:%o hexadecimal:%x%n",myshort,Short.MAX_VALUE,127,127);
-        System.out.println(Integer.toBinaryString(myshort).replaceAll("1111111111111111",""));
-        System.out.println("0"+Integer.toBinaryString(Short.MAX_VALUE));
-        int myint = Integer.MIN_VALUE;
-        System.out.format("Integer.MIN_VALUE%d Integer.MAX_VALUE%d%n",myint,Integer.MAX_VALUE);
-        System.out.println(Integer.toBinaryString(myint));
-        System.out.println("0"+Integer.toBinaryString(Integer.MAX_VALUE));
-        Long mylong = Long.MAX_VALUE;
-        System.out.println("Long.MIN_VALUE"+Long.MIN_VALUE+" Integer.MAX_VALUE"+mylong);
-        System.out.println(Long.toBinaryString(Long.MIN_VALUE));
-        System.out.println("0"+Long.toBinaryString(mylong));
-        Float myfloat = Float.MAX_VALUE;
-        Formatter f = new Formatter(System.out);
-        f.format("%f %f%n",myfloat,3.1415926F);
-        Double defaultDouble = 3.1415926;
-        f.format("%f %f%n",Double.MAX_VALUE,defaultDouble);
-        System.out.println(String.format("%.2f",3.1415926d));
+        // int myshort = Short.MIN_VALUE;
+        // System.out.format("Short.MIN_VALUE%d Short.MAX_VALUE%d octal:%o hexadecimal:%x%n",myshort,Short.MAX_VALUE,127,127);
+        // System.out.println(Integer.toBinaryString(myshort).replaceAll("1111111111111111",""));
+        // System.out.println("0"+Integer.toBinaryString(Short.MAX_VALUE));
+        // int myint = Integer.MIN_VALUE;
+        // System.out.format("Integer.MIN_VALUE%d Integer.MAX_VALUE%d%n",myint,Integer.MAX_VALUE);
+        // System.out.println(Integer.toBinaryString(myint));
+        // System.out.println("0"+Integer.toBinaryString(Integer.MAX_VALUE));
+        // Long mylong = Long.MAX_VALUE;
+        // System.out.println("Long.MIN_VALUE"+Long.MIN_VALUE+" Integer.MAX_VALUE"+mylong);
+        // System.out.println(Long.toBinaryString(Long.MIN_VALUE));
+        // System.out.println("0"+Long.toBinaryString(mylong));
+        // Float myfloat = Float.MAX_VALUE;
+        // Formatter f = new Formatter(System.out);
+        // f.format("%f %f%n",myfloat,3.1415926F);
+        // Double defaultDouble = 3.1415926;
+        // f.format("%f %f%n",Double.MAX_VALUE,defaultDouble);
+        // System.out.println(String.format("%.2f",3.1415926d));
 
         System.out.println(5/2);
         System.out.println(7/3);
@@ -110,8 +94,85 @@ public class hello {
             default: System.out.println("default");
         }
 
+//traverse
+//length
+        Integer[][] a;
+        a = new Integer[3][];
+        for(int i = 0; i < a.length; i++) {
+            a[i] = new Integer[3];
+            for(int j = 0; j < a[i].length; j++)
+                a[i][j] = i * j; // Autoboxing
+        }
+        System.out.println(Arrays.deepToString(a));
+
         for(char c : "An African Swallow".toCharArray())
-        System.out.print(c + " ");
+        System.out.print(c + " "); System.out.println();
+
+        List<String> stringlist = new ArrayList<String>();
+        for(String string : mystring.replaceAll("[^0-9]", ",").split(",")){
+            if (string.length()>0)
+                stringlist.add(string);
+        }
+        System.out.println("stringlist"+stringlist+" "+stringlist.size());
+
+        int myarray[] = { 1, 2, 3, 4, 5 };
+        int ad[][] = { { 11, 12, 13, 14}, { 21, 22, 23,24 },{31,32,33,34} };
+        System.out.println(Arrays.toString(ad));
+        Integer[] a1 = new Integer[] { new Integer(1),};
+        int[][] a2 = new int[2][4];
+        a2[1][0] = 21;
+        a2[1][3] = 32;
+
+        System.out.println(Arrays.toString(myarray)+" "+myarray.length+" "+java.lang.reflect.Array.getLength(myarray));
+
+
+        stringlist.forEach(System.out::print); System.out.println();
+        stringlist.forEach(x -> System.out.print(x+" ")); System.out.println();      
+//size()
+        List<String> myarraylist = Arrays.asList("Buenos Aires", "Córdoba", "La Plata");
+        // myarraylist = [ "1" ];
+        ArrayList<String> c =
+            new ArrayList<>(myarraylist);
+        c.removeAll(myarraylist);
+        c.addAll(myarraylist);
+        System.out.println(c.containsAll(myarraylist));
+        c.clear();
+        c.add("ten");
+        c.add("eleven");
+        c.add(1,"add");
+        System.out.println(c.contains("add"));
+        c.remove(2);
+        for(int i = 0;i < c.size();i++){
+            System.out.print(c.get(i)+" ");
+        }System.out.println();
+
+        Map<String, String> map = new HashMap<String, String>()
+        {//匿名内部类 Anonymous Inner Class
+            {//初始化块 instance initializer block
+            put("key1", "value11");
+            put("key2", "value12");
+            }
+        };
+        // map = {"key11":"value11","key22":"value22"};
+        map.put("key3", "value13");
+        System.out.println(map.keySet()+" "+map.get("key1"));
+        map.remove("key1");
+ 
+        Set set = map.keySet();
+        Iterator iter = set.iterator();
+        while(iter.hasNext()) {
+            String key = (String)iter.next();
+            System.out.print(key + ":" + map.get(key)+" ");
+        }
+        System.out.println();
+
+        Iterator<Map.Entry<String,String>> it = map.entrySet().iterator();
+        while(it.hasNext()) {
+            Map.Entry entry = it.next();
+            System.out.print(entry.getKey() + ":" + entry.getValue() +" ");
+        }
+        System.out.println();    
+        
     }
 
 
