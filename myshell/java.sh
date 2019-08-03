@@ -1,9 +1,10 @@
 #!bin/sh
-if [ -d myshell ];then
-    cd myjava/src/main/java;
-else
-    cd ./../myjava/src/main/java;
+pushd .;
+if [ ! -d myshell ];then
+    cd ./..;
 fi
+
+cd myjava/src/main/java;
 
 # cd com/util;
 # javac hello.java staticClass.java
@@ -18,4 +19,6 @@ else
     java com.util.hello
 fi
 
-cd -;
+# cd -;
+
+popd
