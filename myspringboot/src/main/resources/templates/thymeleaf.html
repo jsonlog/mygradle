@@ -1,0 +1,978 @@
+<!DOCTYPE html>
+<!--<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">-->
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <table>
+        <tr>
+            <th>关键词</th>
+            <th>功能介绍</th>
+            <th>案例</th>
+        </tr>
+        <tr>
+            <td>th:id</td>
+            <td>替换id</td>
+            <td><input th:id="'xxx' +${collect.id}"/></td>
+        </tr>
+        <tr>
+            <td>th:text</td>
+            <td>文本替换</td>
+            <td><p th:text="${collect.description}">description</p></td>
+        </tr>
+        <tr>
+            <td>th:utext</td>
+            <td>支持html的文本替换</td>
+            <td><p th:utext="${htmlcontent}">content</p></td>
+        </tr>
+        <tr>
+            <td>th:object</td>
+            <td>替换对象</td>
+            <td><div th:object="${session.user}"></td>
+        </tr>
+        <tr>
+            <td>th:value</td>
+            <td>属性赋值</td>
+            <td><input th:value="${user.name}"/></td>
+        </tr>
+        <tr>
+            <td>th:with</td>
+            <td>变量赋值运算</td>
+            <td><div th:with="isEven=${prodStat.count}%2==0"></div></td>
+        </tr>
+        <tr>
+            <td>th:style</td>
+            <td>设置样式</td>
+            <td>th:style="'display:' + @{(${sitrue} ? 'none' : 'inline-block')} + ''"</td>
+        </tr>
+        <tr>
+            <td>th:onclick</td>
+            <td>点击事件</td>
+            <td>th:onclick="'getCollect()'"</td>
+        </tr>
+        <tr>
+            <td>th:each</td>
+            <td>属性赋值</td>
+            <td>tr th:each="user,userStat:${users}"</td>
+        </tr>
+        <tr>
+            <td>th:if</td>
+            <td>判断调节</td>
+            <td><a th:if="${userId == collect.userId}"></a></td>
+        </tr>
+        <tr>
+            <td>th:unless</td>
+            <td>和th:if判断相反</td>
+            <td><a th:href="@{/login}" th:unless=${session.user != null}>Login</a></td>
+        </tr>
+    </table>
+
+    <p th:utext="#{home.welcome}">Welcome to our grocery store!</p>
+
+    <p>Today is: <span th:text="${today}">13 February 2011</span></p>
+
+    <p th:utext="#{home.welcome(${session.user.name})}">
+        Welcome to our grocery store, Sebastian Pepper!
+    </p>
+
+    <p th:utext="#{${welcomeMsgKey}(${session.user.name})}">
+        Welcome to our grocery store, Sebastian Pepper!
+    </p>
+
+    Established locale country: <span th:text="${#locale.country}">US</span>.
+
+    <p>
+        Today is: <span th:text="${#calendars.format(today,'dd MMMM yyyy')}">13 May 2011</span>
+    </p>
+
+    <div th:object="${session.user}">
+        <p>Name: <span th:text="*{firstName}">Sebastian</span>.</p>
+        <p>Surname: <span th:text="${lastName}">Pepper</span>.</p>
+        <p>Nationality: <span th:text="*{nationality}">Saturn</span>.</p>
+    </div>
+    Which is exactly equivalent to:
+
+    <div>
+        <p>Name: <span th:text="${session.user.firstName}">Sebastian</span>.</p>
+        <p>Surname: <span th:text="${session.user.lastName}">Pepper</span>.</p>
+        <p>Nationality: <span th:text="${session.user.nationality}">Saturn</span>.</p>
+    </div>
+
+    <div th:object="${session.user}">
+        <p>Name: <span th:text="${#object.firstName}">Sebastian</span>.</p>
+        <p>Surname: <span th:text="${session.user.lastName}">Pepper</span>.</p>
+        <p>Nationality: <span th:text="*{nationality}">Saturn</span>.</p>
+    </div>
+
+
+    <p>3.链接表达式: @{…}</p>
+    <!-- Will produce 'http://localhost:8080/gtvg/order/details?orderId=3' (plus rewriting) -->
+    <a href="details.html"
+       th:href="@{http://localhost:8080/gtvg/order/details(orderId=${o.id})}">view</a>
+
+    <!-- Will produce '/gtvg/order/details?orderId=3' (plus rewriting) -->
+    <a href="details.html" th:href="@{/order/details(orderId=${o.id})}">view</a>
+
+    <!-- Will produce '/gtvg/order/3/details' (plus rewriting) -->
+    <a href="details.html" th:href="@{/order/{orderId}/details(orderId=${o.id})}">Content路径,默认访问static下的order文件夹</a>
+
+
+    <a th:href="@{${url}(orderId=${o.id})}">view</a>
+    <a th:href="@{'/details/'+${user.login}(orderId=${o.id})}">view</a>
+
+    <p>Please select an option</p>
+    <ol>
+        <li><a href="product/list.html" th:href="@{/product/list}">Product List</a></li>
+        <li><a href="order/list.html" th:href="@{/order/list}">Order List</a></li>
+        <li><a href="subscribe.html" th:href="@{/subscribe}">Subscribe to our Newsletter</a></li>
+        <li><a href="userprofile.html" th:href="@{/userprofile}">See User Profile</a></li>
+    </ol>
+
+    <p>
+        Now you are looking at a <span th:text="'working web application'">template file</span>.
+    </p>
+    <p>The year is <span th:text="2013">1492</span>.</p>
+    <p>In two years, it will be <span th:text="2013 + 2">1494</span>.</p>
+
+    <div th:if="${user.isAdmin()} == false"> ...</div>
+    <div th:if="${user.isAdmin() == false}"> ...</div>
+    <div th:if="${variable.something} == null"> ...</div>
+    <div th:class="content">...</div>
+    <div th:class="'content'">...</div>
+    <span th:text="|Welcome to our application, ${user.name}!|">
+    <span th:text="'Welcome to our application, ' + ${user.name} + '!'">
+    <span th:text="${onevar} + ' ' + |${twovar}, ${threevar}|">
+
+    <tr th:class="${row.even}? 'even' : 'odd'">
+      ...
+    </tr>
+
+    <tr th:class="${row.even}? (${row.first}? 'first' : 'even') : 'odd'">
+      ...
+    </tr>
+
+    <tr th:class="${row.even}? 'alt'">
+      ...
+    </tr>
+
+    <div th:object="${session.user}">
+      ...
+      <p>Age: <span th:text="*{age}?: '(no age specified)'">27</span>.</p>
+    </div>
+    <p>Age: <span th:text="*{age != null}? *{age} : '(no age specified)'">27</span>.</p>
+
+    <p>
+      Name:
+      <span th:text="*{firstName}?: (*{admin}? 'Admin' : #{default.username})">Sebastian</span>
+    </p>
+
+    <p th:text="${__#{article.text('textVar')}__}">Some text here...</p>
+    <p th:text="${@myapp.translator.Translator@translateToFrench(textVar)}">Some text here...</p>
+
+    5 Setting Attribute Values
+    <form action="subscribe.html">
+      <fieldset>
+        <input type="text" name="email" />
+        <input type="submit" value="Subscribe me!" />
+      </fieldset>
+    </form>
+
+    <form action="subscribe.html" th:attr="action=@{/subscribe}">
+      <fieldset>
+        <input type="text" name="email" />
+        <input type="submit" value="Subscribe me!" th:attr="value=#{subscribe.submit}"/>
+      </fieldset>
+    </form>
+
+    <form action="/gtvg/subscribe">
+      <fieldset>
+        <input type="text" name="email" />
+        <input type="submit" value="¡Suscríbeme!"/>
+      </fieldset>
+    </form>
+    5.4 Appending and prepending
+    <input type="button" value="Do it!" class="btn" th:attrappend="class=${' ' + cssStyle}" />
+    <input type="button" value="Do it!" class="btn warning" />
+    <tr th:each="prod : ${prods}" class="row" th:classappend="${prodStat.odd}? 'odd'">
+    5.5 Fixed-value boolean attributes
+    <input type="checkbox" name="option1" checked="checked" />
+    <input type="checkbox" name="option2" />
+    <input type="checkbox" name="active" th:checked="${user.active}" />
+    <table>
+        <tr data-th-each="user : ${users}">
+            <td data-th-text="${user.login}">...</td>
+            <td data-th-text="${user.name}">...</td>
+        </tr>
+    </table>
+    6 Iteration
+    <h1>Product list</h1>
+
+    <table>
+      <tr>
+        <th>NAME</th>
+        <th>PRICE</th>
+        <th>IN STOCK</th>
+      </tr>
+      <tr th:each="prod : ${prods}">
+        <td th:text="${prod.name}">Onions</td>
+        <td th:text="${prod.price}">2.41</td>
+        <td th:text="${prod.inStock}? #{true} : #{false}">yes</td>
+      </tr>
+    </table>
+
+    <p>
+      <a href="../home.html" th:href="@{/}">Return to home</a>
+    </p>
+    6.2 Keeping iteration status
+    <table>
+      <tr>
+        <th>NAME</th>
+        <th>PRICE</th>
+        <th>IN STOCK</th>
+      </tr>
+      <tr th:each="prod,iterStat : ${prods}" th:class="${iterStat.odd}? 'odd'">
+        <td th:text="${prod.name}">Onions</td>
+        <td th:text="${prod.price}">2.41</td>
+        <td th:text="${prod.inStock}? #{true} : #{false}">yes</td>
+      </tr>
+    </table>
+
+    <table>
+      <tr>
+        <th colspan="1" rowspan="1">NAME</th>
+        <th colspan="1" rowspan="1">PRICE</th>
+        <th colspan="1" rowspan="1">IN STOCK</th>
+      </tr>
+      <tr>
+        <td colspan="1" rowspan="1">Fresh Sweet Basil</td>
+        <td colspan="1" rowspan="1">4.99</td>
+        <td colspan="1" rowspan="1">yes</td>
+      </tr>
+      <tr class="odd">
+        <td colspan="1" rowspan="1">Italian Tomato</td>
+        <td colspan="1" rowspan="1">1.25</td>
+        <td colspan="1" rowspan="1">no</td>
+      </tr>
+      <tr>
+        <td colspan="1" rowspan="1">Yellow Bell Pepper</td>
+        <td colspan="1" rowspan="1">2.50</td>
+        <td colspan="1" rowspan="1">yes</td>
+      </tr>
+      <tr class="odd">
+        <td colspan="1" rowspan="1">Old Cheddar</td>
+        <td colspan="1" rowspan="1">18.75</td>
+        <td colspan="1" rowspan="1">yes</td>
+      </tr>
+    </table>
+    <table>
+      <tr>
+        <th>NAME</th>
+        <th>PRICE</th>
+        <th>IN STOCK</th>
+      </tr>
+      <tr th:each="prod : ${prods}" th:class="${prodStat.odd}? 'odd'">
+        <td th:text="${prod.name}">Onions</td>
+        <td th:text="${prod.price}">2.41</td>
+        <td th:text="${prod.inStock}? #{true} : #{false}">yes</td>
+      </tr>
+    </table>
+    7 Conditional Evaluation
+    <table>
+      <tr>
+        <th>NAME</th>
+        <th>PRICE</th>
+        <th>IN STOCK</th>
+        <th>COMMENTS</th>
+      </tr>
+      <tr th:each="prod : ${prods}" th:class="${prodStat.odd}? 'odd'">
+        <td th:text="${prod.name}">Onions</td>
+        <td th:text="${prod.price}">2.41</td>
+        <td th:text="${prod.inStock}? #{true} : #{false}">yes</td>
+        <td>
+          <span th:text="${#lists.size(prod.comments)}">2</span> comment/s
+          <a href="comments.html"
+             th:href="@{/product/comments(prodId=${prod.id})}"
+             th:if="${not #lists.isEmpty(prod.comments)}">view</a>
+        </td>
+      </tr>
+    </table>
+    <a href="comments.html"
+       th:href="@{/product/comments(prodId=${prod.id})}"
+       th:if="${not #lists.isEmpty(prod.comments)}">view</a>
+    <table>
+      <tr>
+        <th>NAME</th>
+        <th>PRICE</th>
+        <th>IN STOCK</th>
+        <th>COMMENTS</th>
+      </tr>
+      <tr>
+        <td>Fresh Sweet Basil</td>
+        <td>4.99</td>
+        <td>yes</td>
+        <td>
+          <span>0</span> comment/s
+        </td>
+      </tr>
+      <tr class="odd">
+        <td>Italian Tomato</td>
+        <td>1.25</td>
+        <td>no</td>
+        <td>
+          <span>2</span> comment/s
+          <a href="/gtvg/product/comments?prodId=2">view</a>
+        </td>
+      </tr>
+      <tr>
+        <td>Yellow Bell Pepper</td>
+        <td>2.50</td>
+        <td>yes</td>
+        <td>
+          <span>0</span> comment/s
+        </td>
+      </tr>
+      <tr class="odd">
+        <td>Old Cheddar</td>
+        <td>18.75</td>
+        <td>yes</td>
+        <td>
+          <span>1</span> comment/s
+          <a href="/gtvg/product/comments?prodId=4">view</a>
+        </td>
+      </tr>
+    </table>
+    <a href="comments.html"
+       th:href="@{/comments(prodId=${prod.id})}"
+       th:unless="${#lists.isEmpty(prod.comments)}">view</a>
+    7.2 Switch statements
+    <div th:switch="${user.role}">
+      <p th:case="'admin'">User is an administrator</p>
+      <p th:case="#{roles.manager}">User is a manager</p>
+    </div>
+    <div th:switch="${user.role}">
+      <p th:case="'admin'">User is an administrator</p>
+      <p th:case="#{roles.manager}">User is a manager</p>
+      <p th:case="*">User is some other thing</p>
+    </div>
+    8 Template Layout
+     <div th:fragment="copy">
+      &copy; 2011 The Good Thymes Virtual Grocery
+    </div>
+    <div th:insert="~{footer :: copy}"></div>
+    <div th:insert="footer :: copy"></div>
+    <div th:insert="footer :: (${user.isAdmin}? #{footer.admin} : #{footer.normaluser})"></div>
+    <div id="copy-section">
+      &copy; 2011 The Good Thymes Virtual Grocery
+    </div>
+    <div th:insert="~{footer :: #copy-section}"></div>
+
+    <footer th:fragment="copy">
+      &copy; 2011 The Good Thymes Virtual Grocery
+    </footer>
+    <div th:insert="footer :: copy"></div>
+
+    <div th:replace="footer :: copy"></div>
+
+    <div th:include="footer :: copy"></div>
+    8.2 Parameterizable fragment signatures
+    <div th:fragment="frag (onevar,twovar)">
+        <p th:text="${onevar} + ' - ' + ${twovar}">...</p>
+    </div>
+    <div th:replace="::frag (${value1},${value2})">...</div>
+    <div th:replace="::frag (onevar=${value1},twovar=${value2})">...</div>
+    <div th:replace="::frag (twovar=${value2},onevar=${value1})">...</div>
+    Fragment local variables without fragment arguments
+    <div th:fragment="frag">
+        ...
+    </div>
+    <div th:replace="::frag (onevar=${value1},twovar=${value2})">
+    <div th:replace="::frag" th:with="onevar=${value1},twovar=${value2}">
+    <div th:assert="${onevar},(${twovar} != 43)">...</div>
+    <header th:fragment="contentheader(title)" th:assert="${!#strings.isEmpty(title)}">...</header>
+    8.3 Flexible layouts: beyond mere fragment insertion
+    <div th:insert="${user.isAdmin()} ? ~{common :: adminhead} : ~{}">...</div>
+    <div th:insert="${user.isAdmin()} ? ~{common :: adminhead} : _">
+        Welcome [[${user.name}]], click <a th:href="@{/support}">here</a> for help-desk support.
+    </div>
+        <!-- The body of the <div> will be used if the "common :: salutation" fragment  -->
+        <!-- does not exist (or is empty).                                              -->
+    <div th:insert="~{common :: salutation} ?: _">
+        Welcome [[${user.name}]], click <a th:href="@{/support}">here</a> for help-desk support.
+    </div>
+    8.4 Removing template fragments
+    <table>
+      <tr>
+        <th>NAME</th>
+        <th>PRICE</th>
+        <th>IN STOCK</th>
+        <th>COMMENTS</th>
+      </tr>
+      <tr th:each="prod : ${prods}" th:class="${prodStat.odd}? 'odd'">
+        <td th:text="${prod.name}">Onions</td>
+        <td th:text="${prod.price}">2.41</td>
+        <td th:text="${prod.inStock}? #{true} : #{false}">yes</td>
+        <td>
+          <span th:text="${#lists.size(prod.comments)}">2</span> comment/s
+          <a href="comments.html"
+             th:href="@{/product/comments(prodId=${prod.id})}"
+             th:unless="${#lists.isEmpty(prod.comments)}">view</a>
+        </td>
+      </tr>
+    </table>
+    <table>
+      <tr>
+        <th>NAME</th>
+        <th>PRICE</th>
+        <th>IN STOCK</th>
+        <th>COMMENTS</th>
+      </tr>
+      <tr th:each="prod : ${prods}" th:class="${prodStat.odd}? 'odd'">
+        <td th:text="${prod.name}">Onions</td>
+        <td th:text="${prod.price}">2.41</td>
+        <td th:text="${prod.inStock}? #{true} : #{false}">yes</td>
+        <td>
+          <span th:text="${#lists.size(prod.comments)}">2</span> comment/s
+          <a href="comments.html"
+             th:href="@{/product/comments(prodId=${prod.id})}"
+             th:unless="${#lists.isEmpty(prod.comments)}">view</a>
+        </td>
+      </tr>
+      <tr class="odd">
+        <td>Blue Lettuce</td>
+        <td>9.55</td>
+        <td>no</td>
+        <td>
+          <span>0</span> comment/s
+        </td>
+      </tr>
+      <tr>
+        <td>Mild Cinnamon</td>
+        <td>1.99</td>
+        <td>yes</td>
+        <td>
+          <span>3</span> comment/s
+          <a href="comments.html">view</a>
+        </td>
+      </tr>
+    </table>
+    <table>
+      <tr>
+        <th>NAME</th>
+        <th>PRICE</th>
+        <th>IN STOCK</th>
+        <th>COMMENTS</th>
+      </tr>
+      <tr>
+        <td>Fresh Sweet Basil</td>
+        <td>4.99</td>
+        <td>yes</td>
+        <td>
+          <span>0</span> comment/s
+        </td>
+      </tr>
+      <tr class="odd">
+        <td>Italian Tomato</td>
+        <td>1.25</td>
+        <td>no</td>
+        <td>
+          <span>2</span> comment/s
+          <a href="/gtvg/product/comments?prodId=2">view</a>
+        </td>
+      </tr>
+      <tr>
+        <td>Yellow Bell Pepper</td>
+        <td>2.50</td>
+        <td>yes</td>
+        <td>
+          <span>0</span> comment/s
+        </td>
+      </tr>
+      <tr class="odd">
+        <td>Old Cheddar</td>
+        <td>18.75</td>
+        <td>yes</td>
+        <td>
+          <span>1</span> comment/s
+          <a href="/gtvg/product/comments?prodId=4">view</a>
+        </td>
+      </tr>
+      <tr class="odd">
+        <td>Blue Lettuce</td>
+        <td>9.55</td>
+        <td>no</td>
+        <td>
+          <span>0</span> comment/s
+        </td>
+      </tr>
+      <tr>
+        <td>Mild Cinnamon</td>
+        <td>1.99</td>
+        <td>yes</td>
+        <td>
+          <span>3</span> comment/s
+          <a href="comments.html">view</a>
+        </td>
+      </tr>
+    </table>
+    <table>
+      <tr>
+        <th>NAME</th>
+        <th>PRICE</th>
+        <th>IN STOCK</th>
+        <th>COMMENTS</th>
+      </tr>
+      <tr th:each="prod : ${prods}" th:class="${prodStat.odd}? 'odd'">
+        <td th:text="${prod.name}">Onions</td>
+        <td th:text="${prod.price}">2.41</td>
+        <td th:text="${prod.inStock}? #{true} : #{false}">yes</td>
+        <td>
+          <span th:text="${#lists.size(prod.comments)}">2</span> comment/s
+          <a href="comments.html"
+             th:href="@{/product/comments(prodId=${prod.id})}"
+             th:unless="${#lists.isEmpty(prod.comments)}">view</a>
+        </td>
+      </tr>
+      <tr class="odd" th:remove="all">
+        <td>Blue Lettuce</td>
+        <td>9.55</td>
+        <td>no</td>
+        <td>
+          <span>0</span> comment/s
+        </td>
+      </tr>
+      <tr th:remove="all">
+        <td>Mild Cinnamon</td>
+        <td>1.99</td>
+        <td>yes</td>
+        <td>
+          <span>3</span> comment/s
+          <a href="comments.html">view</a>
+        </td>
+      </tr>
+    </table>
+    <table>
+      <tr>
+        <th>NAME</th>
+        <th>PRICE</th>
+        <th>IN STOCK</th>
+        <th>COMMENTS</th>
+      </tr>
+      <tr>
+        <td>Fresh Sweet Basil</td>
+        <td>4.99</td>
+        <td>yes</td>
+        <td>
+          <span>0</span> comment/s
+        </td>
+      </tr>
+      <tr class="odd">
+        <td>Italian Tomato</td>
+        <td>1.25</td>
+        <td>no</td>
+        <td>
+          <span>2</span> comment/s
+          <a href="/gtvg/product/comments?prodId=2">view</a>
+        </td>
+      </tr>
+      <tr>
+        <td>Yellow Bell Pepper</td>
+        <td>2.50</td>
+        <td>yes</td>
+        <td>
+          <span>0</span> comment/s
+        </td>
+      </tr>
+      <tr class="odd">
+        <td>Old Cheddar</td>
+        <td>18.75</td>
+        <td>yes</td>
+        <td>
+          <span>1</span> comment/s
+          <a href="/gtvg/product/comments?prodId=4">view</a>
+        </td>
+      </tr>
+    </table>
+    <table>
+      <thead>
+        <tr>
+          <th>NAME</th>
+          <th>PRICE</th>
+          <th>IN STOCK</th>
+          <th>COMMENTS</th>
+        </tr>
+      </thead>
+      <tbody th:remove="all-but-first">
+        <tr th:each="prod : ${prods}" th:class="${prodStat.odd}? 'odd'">
+          <td th:text="${prod.name}">Onions</td>
+          <td th:text="${prod.price}">2.41</td>
+          <td th:text="${prod.inStock}? #{true} : #{false}">yes</td>
+          <td>
+            <span th:text="${#lists.size(prod.comments)}">2</span> comment/s
+            <a href="comments.html"
+               th:href="@{/product/comments(prodId=${prod.id})}"
+               th:unless="${#lists.isEmpty(prod.comments)}">view</a>
+          </td>
+        </tr>
+        <tr class="odd">
+          <td>Blue Lettuce</td>
+          <td>9.55</td>
+          <td>no</td>
+          <td>
+            <span>0</span> comment/s
+          </td>
+        </tr>
+        <tr>
+          <td>Mild Cinnamon</td>
+          <td>1.99</td>
+          <td>yes</td>
+          <td>
+            <span>3</span> comment/s
+            <a href="comments.html">view</a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <a href="/something" th:remove="${condition}? tag : none">Link text not to be removed</a>
+    <a href="/something" th:remove="${condition}? tag">Link text not to be removed</a>
+    8.5 Layout Inheritance
+    <h1>Layout H1</h1>
+    <div th:replace="${content}">
+        <p>Layout content</p>
+    </div>
+    <footer>
+        Layout footer
+    </footer>
+    <section>
+        <p>Page content</p>
+        <div>Included on page</div>
+    </section>
+    9 Local Variables
+    <tr th:each="prod : ${prods}">
+        ...
+    </tr>
+    <div th:with="firstPer=${persons[0]}">
+      <p>
+        The name of the first person is <span th:text="${firstPer.name}">Julius Caesar</span>.
+      </p>
+    </div>
+    <div th:with="firstPer=${persons[0]},secondPer=${persons[1]}">
+      <p>
+        The name of the first person is <span th:text="${firstPer.name}">Julius Caesar</span>.
+      </p>
+      <p>
+        But the name of the second person is
+        <span th:text="${secondPer.name}">Marcus Antonius</span>.
+      </p>
+    </div>
+    <div th:with="company=${user.company + ' Co.'},account=${accounts[company]}">...</div>
+    <p>
+      Today is:
+      <span th:text="${#calendars.format(today,'dd MMMM yyyy')}">13 february 2011</span>
+    </p>
+    <p th:with="df=#{date.format}">
+      Today is: <span th:text="${#calendars.format(today,df)}">13 February 2011</span>
+    </p>
+    <p>
+      Today is:
+      <span th:with="df=#{date.format}"
+            th:text="${#calendars.format(today,df)}">13 February 2011</span>
+    </p>
+    10 Attribute Precedence
+    <ul>
+      <li th:each="item : ${items}" th:text="${item.description}">Item description here...</li>
+    </ul>
+    <ul>
+      <li th:text="${item.description}" th:each="item : ${items}">Item description here...</li>
+    </ul>
+    11 Comments and Blocks
+    <div th:text="${...}">
+      ...
+    </div>
+    <!--/*-->
+    <div>
+     you can see me only before Thymeleaf processes me!
+    </div>
+    <!--*/-->
+    <table>
+       <tr th:each="x : ${xs}">
+         ...
+       </tr>
+        <!--/*-->
+       <tr>
+         ...
+       </tr>
+       <tr>
+         ...
+       </tr>
+        <!--*/-->
+    </table>
+    <span>hello!</span>
+            <!--/*/
+              <div th:text="${...}">
+                ...
+              </div>
+            /*/-->
+    <span>goodbye!</span>
+    <span>hello!</span>
+
+      <div th:text="${...}">
+        ...
+      </div>
+
+    <span>goodbye!</span>
+    11.4. Synthetic th:block tag
+    <table>
+      <th:block th:each="user : ${users}">
+        <tr>
+            <td th:text="${user.login}">...</td>
+            <td th:text="${user.name}">...</td>
+        </tr>
+        <tr>
+            <td colspan="2" th:text="${user.address}">...</td>
+        </tr>
+      </th:block>
+    </table>
+    <table>
+        <!--/*/ <th:block th:each="user : ${users}"> /*/-->
+        <tr>
+            <td th:text="${user.login}">...</td>
+            <td th:text="${user.name}">...</td>
+        </tr>
+        <tr>
+            <td colspan="2" th:text="${user.address}">...</td>
+        </tr>
+        <!--/*/ </th:block> /*/-->
+    </table>
+    12 Inlining
+    <p>Hello, [[${session.user.name}]]!</p>
+    <p>Hello, <span th:text="${session.user.name}">Sebastian</span>!</p>
+    <p>The message is "[(${msg})]"</p>
+    <p>The message is "This is <b>great!</b>"</p>
+    <p>The message is "[[${msg}]]"</p>
+    <p>The message is "This is &lt;b&gt;great!&lt;/b&gt;"</p>
+    Disabling inlining
+    <p th:inline="none">A double array looks like this: [[1, 2, 3], [4, 5]]!</p>
+    12.3 JavaScript inlining
+    <!--<script th:inline="javascript">-->
+    <!--    ...-->
+    <!--    var username = [[${session.user.name}]];-->
+    <!--    ...-->
+    <!--</script>-->
+    <!--<style th:inline="css">-->
+    <!--    .[[${classname}]] {-->
+    <!--        text-align: [[${align}]];-->
+    <!--    }-->
+    <!--</style>-->
+    14 Some more pages for our grocery
+    <h1>Order list</h1>
+
+    <table>
+      <tr>
+        <th>DATE</th>
+        <th>CUSTOMER</th>
+        <th>TOTAL</th>
+        <th></th>
+      </tr>
+      <tr th:each="o : ${orders}" th:class="${oStat.odd}? 'odd'">
+        <td th:text="${#calendars.format(o.date,'dd/MMM/yyyy')}">13 jan 2011</td>
+        <td th:text="${o.customer.name}">Frederic Tomato</td>
+        <td th:text="${#aggregates.sum(o.orderLines.{purchasePrice * amount})}">23.32</td>
+        <td>
+          <a href="details.html" th:href="@{/order/details(orderId=${o.id})}">view</a>
+        </td>
+      </tr>
+    </table>
+
+    <div th:object="*{customer}">
+    <p><b>Name:</b> <span th:text="*{name}">Frederic Tomato</span></p>
+    ...
+    </div>
+    <p><b>Name:</b> <span th:text="${order.customer.name}">Frederic Tomato</span></p>
+    17 Decoupled Template Logic
+    <table id="usersTable">
+      <tr>
+        <td class="username">Jeremy Grapefruit</td>
+        <td class="usertype">Normal User</td>
+      </tr>
+      <tr>
+        <td class="username">Alice Watermelon</td>
+        <td class="usertype">Administrator</td>
+      </tr>
+    </table>
+    <table id="usersTable" th:remove="all-but-first">
+      <tr th:each="user : ${users}">
+        <td class="username" th:text="${user.name}">Jeremy Grapefruit</td>
+        <td class="usertype" th:text="#{|user.type.${user.type}|}">Normal User</td>
+      </tr>
+      <tr>
+        <td class="username">Alice Watermelon</td>
+        <td class="usertype">Administrator</td>
+      </tr>
+    </table>
+    20 Appendix C: Markup Selector Syntax
+    <div th:insert="mytemplate :: //div[@class='content']">...</div>
+    <div th:insert="mytemplate :: //div[@class='content']">...</div>
+    Could be written as:
+    <div th:insert="mytemplate :: div.content">...</div>
+
+    <div th:replace="mytemplate :: myfrag">...</div>
+    <div th:replace="mytemplate :: .myfrag">...</div>
+
+
+
+
+    <p>2.获取变量值${...}</p>
+    <!--/*@thymesVar id="name" type="java.lang.String"*/-->
+    <p th:text="'Hello！, ' + ${name} + '!'">3333</p>
+
+    <p>4.文本替换</p>
+    <span th:text="'Welcome to our application, ' + ${user.name} + '!'">
+    <span th:text="|Welcome to our application, ${user.name}!|">
+
+    <p>5.运算符</p>
+    <span>二元操作：+, - , * , / , %
+一元操作: - （负）
+　　　　逻辑运算
+
+一元 : and or
+二元 : !,not
+　　　　比较运算（为避免转义尴尬，可以使用括号中的英文进行比较运算！）
+
+比较：> , < , >= , <= ( gt , lt , ge , le )
+等于：== , != ( eq , ne )
+　　　　条件运算
+
+If-then: (if) ? (then)
+If-then-else: (if) ? (then) : (else)
+Default: (value) ?: (defaultvalue)
+'User is of type ' + (${user.isAdmin()} ? 'Administrator' : (${user.type} ?: 'Unknown'))
+    </span>
+
+    <p>6.条件</p>
+    <a th:href="@{/login}" th:unless=${session.user != null}>Login</a>
+
+    <div th:switch="${user.role}">
+      <p th:case="'admin'">User is an administrator</p>
+      <p th:case="#{roles.manager}">User is a manager</p>
+      <p th:case="*">User is some other thing</p>
+    </div>
+
+    <p>7.循环</p>
+    <!-- 不存在则忽略，显示hello null!(可以通过默认值进行设置)-->
+    <p th:text="'Hello ' + (${name}?:'admin')">3333</p>
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>NAME</th>
+            <th>AGE</th>
+        </tr>
+        <tr th:each="emp : ${empList}">
+            <td th:text="${emp.id}">1</td>
+            <td th:text="${emp.name}">海</td>
+            <td th:text="${emp.age}">18</td>
+        </tr>
+    </table>
+
+<script th:inline="javascript">
+/*<![CDATA[*/
+var username = /*[[${sesion.user.name}]]*/ 'Sebastian';
+var size = /*[[${size}]]*/ 0;
+/*]]>*/
+</script>
+        <!--
+js附加代码：
+
+/*[+
+var msg = 'This is a working application';
++]*/
+js移除代码：
+
+/*[- */
+var msg = 'This is a non-working template';
+/* -]*/
+-->
+<!--
+设置标签的值或者标签的内容可以用
+  th:value="${selectDto.stuName}" 和 th:text="${selectDto.stuName}"
+  相当于在jsp中直接使用value="${selectDto.stuName}" 和 ${selectDto.stuName}
+
+
+设置单选框selectDto.exact==1时选中
+  th:checked="${selectDto.exact==1}?'true':'false'
+  相当于在jsp中使用${selectDto.exact==1?"checked":""}
+
+
+多重判断 设置stu.stuStatus=1时 注册 stu.stuStatus=0时 未注册 stu.stuStatus=1时 休学
+  <td th:class="${stu.stuStatus!=1}?'stuStatus'" th:text="${stu.stuStatus==1}?'注册':(${stu.stuStatus==0}?'未注册':'休学')"></td>
+  相当于jsp中的
+      <c:choose>
+                <c:when test="${stu.stuStatus==0}">
+                    <td class="stuStatus">未注册</td>
+                </c:when>
+                <c:when test="${stu.stuStatus==1}">
+                    <td>已注册</td>
+                </c:when>
+                <c:when test="${stu.stuStatus==-1}">
+                    <td class="stuStatus">休学</td>
+                </c:when>
+            </c:choose>
+
+
+遍历list
+<tr th:each="stu,stuStat:${page.list}">
+  <td th:text="${stu.stuName}"
+</th>
+这里的stuStat可以得到遍历list时的序号，如果不写stuStat时，会自动生成一个名字为变量名+Stat的一个变量。
+相当于el表达式的
+<c:forEach items="${page.list}" var="stu">
+     ${stu.stuName}
+</c:forEach>
+-->
+
+
+<!--
+There are quite a lot of attributes like these, each of them targeting a specific XHTML or HTML5 attribute:
+
+th:abbr	th:accept	th:accept-charset
+th:accesskey	th:action	th:align
+th:alt	th:archive	th:audio
+th:autocomplete	th:axis	th:background
+th:bgcolor	th:border	th:cellpadding
+th:cellspacing	th:challenge	th:charset
+th:cite	th:class	th:classid
+th:codebase	th:codetype	th:cols
+th:colspan	th:compact	th:content
+th:contenteditable	th:contextmenu	th:data
+th:datetime	th:dir	th:draggable
+th:dropzone	th:enctype	th:for
+th:form	th:formaction	th:formenctype
+th:formmethod	th:formtarget	th:frame
+th:frameborder	th:headers	th:height
+th:high	th:href	th:hreflang
+th:hspace	th:http-equiv	th:icon
+th:id	th:keytype	th:kind
+th:label	th:lang	th:list
+th:longdesc	th:low	th:manifest
+th:marginheight	th:marginwidth	th:max
+th:maxlength	th:media	th:method
+th:min	th:name	th:optimum
+th:pattern	th:placeholder	th:poster
+th:preload	th:radiogroup	th:rel
+th:rev	th:rows	th:rowspan
+th:rules	th:sandbox	th:scheme
+th:scope	th:scrolling	th:size
+th:sizes	th:span	th:spellcheck
+th:src	th:srclang	th:standby
+th:start	th:step	th:style
+th:summary	th:tabindex	th:target
+th:title	th:type	th:usemap
+th:value	th:valuetype	th:vspace
+th:width	th:wrap	th:xmlbase
+th:xmllang	th:xmlspace
+-->
+
+</body>
+</html>
