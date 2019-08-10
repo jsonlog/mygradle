@@ -6,6 +6,7 @@ import com.util.*;
 
 @RestController
 @EnableAutoConfiguration
+// @SpringBootApplication
 public class Example {
 
 	@RequestMapping("/")
