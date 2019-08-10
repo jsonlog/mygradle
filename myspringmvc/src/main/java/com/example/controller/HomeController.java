@@ -15,6 +15,12 @@ public class HomeController {
         return "home";
     }
 
+
+    @RequestMapping("/hello")
+    public String hello(){
+        return "helloform";
+    }
+
     // @RequestMapping("jsp/{url}")
     // public String fileupload(@PathVariable String url){
     //     System.out.println("HomeController:jsp/"+url);
