@@ -75,17 +75,41 @@
 <!--            <scope>provided</scope>-->
         </dependency>
     </dependencies>
-<!--    <build>-->
-<!--        <plugins>-->
-<!--            <plugin>-->
-<!--                <groupId>org.apache.maven.plugins</groupId>-->
-<!--                <artifactId>maven-compiler-plugin</artifactId>-->
-<!--                <version>3.8.1</version>-->
-<!--                <configuration>-->
-<!--                    <source>1.8</source>-->
-<!--                    <target>1.8</target>-->
-<!--                </configuration>-->
-<!--            </plugin>-->
-<!--        </plugins>-->
-<!--    </build>-->
+   <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.8.1</version>
+                <configuration>
+                    <source>1.8</source>
+                    <target>1.8</target>
+                    <skip>true</skip><!-- true:跳过测试 -->
+                    <encoding>UTF-8</encoding>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-resources-plugin</artifactId>
+                <version>2.6</version>
+                <configuration>
+                    <encoding>UTF-8</encoding>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>tomcat-maven-plugin</artifactId>
+                <version>1.1</version>
+                <configuration>
+                    <path>/myproject</path>
+                    <!-- <port>8080</port> -->
+                    <uriEncoding>UTF-8</uriEncoding>
+                    <url>http://localhost:8080/myproject</url>
+                    <server>tomcat</server>
+                    <!-- <username>tomcat</username>
+                    <password>tomcat</password> -->
+                </configuration>
+            </plugin>            
+       </plugins>
+   </build>
 </project>
