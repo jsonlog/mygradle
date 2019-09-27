@@ -13,7 +13,48 @@ mainClassName = 'com.util.hello'
 //         attributes 'Main-Class': 'com.util.hello'
 //     }
 // }
- 
+
+// jar {
+//     manifest {
+//         attributes 'Main-Class': 'com.util.hello'
+//     }
+// }
+//sourceSets{
+//    main{
+////        if (isDebug.toBoolean()) {
+////            manifest.srcFile 'src/main/debug/AndroidManifest.xml'
+////        } else {
+////            manifest.srcFile 'src/main/release/AndroidManifest.xml'
+////        }
+//        java{
+//            srcDir 'src'
+////            exclude '/src/java/**'  // 不想包含文件的路径
+//        }
+//        resources{
+//            srcDir 'src/resources'
+//        }
+//        sourceSets.all{set ->
+//            println "${set.name}的文件是 ${set.java.srcDirs}"
+//        }
+//    }
+//}
+
+//android {
+//    sourceSets {
+//        main {
+//            manifest.srcFile 'AndroidManifest.xml'
+//            java.srcDirs = ['src']
+//            resources.srcDirs = ['src']
+//            aidl.srcDirs = ['src']
+//            renderscript.srcDirs = ['src']
+//            res.srcDirs = ['res']
+//            assets.srcDirs = ['assets']
+//            jniLibs.srcDirs = ['libs']
+//        }
+//
+//    }
+//}
+
 // In this section you declare where to find the dependencies of your project
 repositories {
     // Use 'jcenter' for resolving your dependencies.

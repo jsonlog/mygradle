@@ -340,8 +340,31 @@ obj.click();
 //setTimeout('startTime()',500)
 	// t=setTimeout(function(){startTime()},500);//暂停指定的毫秒数后执行指定的代码
   // document.cookie = "username=; expires=Thu, 01 Jan 1970 00:00:00 GMT";
+
+  function owlRedirector(url) {
+    // if(url.indexOf("http%3A%2F%2F") == -1 && url.indexOf("https%3A%2F%2F") == -1) return url;
+    if (url.indexOf("https%3A%2F%2F") != -1){
+      index = url.indexOf("%3A%2F%2F");
+      return decodeURIComponent("https"+url.substr(index));
+    }else if (url.indexOf("http%3A%2F%2F") != -1) {
+      index = url.indexOf("%3A%2F%2F");
+      return decodeURIComponent("http" + url.substr(index));
+    }
+    return url;
+  }
+  function owlRedirector2(url) {
+    if (url.indexOf("http%3A") != -1 || url.indexOf("https%3A") != -1) {
+      url = decodeURIComponent(url);
+      url = url.replace(/.*url=/, "")
+    }
+    return url;
+  }
+  // encodeURI
+  // encodeURIComponent
+  // decodeURI
+
 </script>
-    <a href="javascript:void(alert('Warning!!!'))">点我!</a>
+<a href="javascript:void(alert('Warning!!!'))">点我!</a>
 <a href="#" onclick="subgo()">点我</a><!--刷新到顶部-->
 <a href="####" >test</a> <!--不让刷新方法1-->
 <a href="javascript:;" onclick="doSomething()">test</a>
@@ -362,4 +385,182 @@ obj.click();
 </p>
 <!-- <script src="myscript.js"> -->
 </body>
+<script>
+
+  console.log(owlRedirectorFilter("http://y.qq.com/n/yqq/song/002B2EAA3brD5b.html"))
+   console.log(owlRedirectorFilter("https://link.zhihu.com/?target=https%3A//link.jianshu.com/%3Ft%3Dhttps%3A//twitter.com/timberners_lee"))
+   console.log(owlRedirectorFilter("https://mijisou.com/url_proxy?proxyurl=http%3A//www.so.com/link%3Furl%3Dhttp%253A%252F%252Fwww.360kuai.com%252Fpc%252F989bbf71b2a9abcb8%253Fcota%253D3%2526kuai_so%253D1%2526sign%253D360_7bc3b157%2526refer_scene%253Dso_55%26q%3D%25E6%2596%25B0%25E9%2597%25BB%26ts%3D1569510529%26t%3D53fdd6417c9d84a4c745a17b8841fb9&token=27af8d927f81aeba45c0ebfba4174e638cb622d7151fc29974b1a8d346a86e34"))
+   console.log(owlRedirectorFilter("https://www.jianshu.com/go-wild?ac=2&url=http%3A%2F%2Fmaven.apache.org%2Fref%2F3.2.2%2Fmaven-repository-metadata%2Frepository-metadata.html"))
+  // http://maven.apache.org/ref/3.2.2/maven-repository-metadata/repository-metadata.html
+  // /^https?:\/\/www\.jianshu\.com\/.*https?%3A%2F%2F/
+  //https://link.zhihu.com/?target=https%3A//link.jianshu.com/%3Ft%3Dhttps%3A//twitter.com/timberners_lee
+  // /^https?:\/\/.*https?%3A%2F%2F/
+
+
+
+
+
+    //copy start-----------------------------------------------------------------------------------------------
+    //copy start-----------------------------------------------------------------------------------------------
+    //copy start-----------------------------------------------------------------------------------------------
+  function owlRedirectorFilter(url) {
+    var addUrlWhitelist = [
+      "https://jsonlog.github.io/myspringblog",
+      "chrome://newtab",
+      "",//block
+    ];
+    if(url == addUrlWhitelist[0]) return url;
+    
+    var addDomainBlacklist = [
+      //test
+
+      //0-9
+      "https://www.360kuai.com/pc/989bbf71b2a9abcb8?cota=3&kuai_so=1&sign=360_7bc3b157&refer_scene=so_55&q=%E6%96%B0%E9%97%BB&ts=1569510529&t=53fdd6417c9d84a4c745a17b8841fb9&token=27af8d927f81aeba45c0ebfba4174e638cb622d7151fc29974b1a8d346a86e34",
+
+      //domain
+      "https://afu88.com",
+      "https://aiuxian.com",
+      "https://bbs.16ao.com",
+      "https://cam.ooxxnews.com",
+      "http://ent.zdface.com",
+      "https://ftp1.linuxidc.com",
+      "https://ju.taobao.com",
+      "https://lssrc.com",
+      "https://money.gucheng.com",
+      "https://news.htcyzx.com",
+      "https://one.zzccaa.biz",
+      "https://oned.gq",
+      "http://prog3.com",
+      "https://s.click.taobao.com",
+      "https://sh.qihoo.com",
+      "https://sh.360kuai.com",
+
+      //www
+      "http://www.guyasos.com",
+      "https://www.haote.com",
+      "http://www.hzmedia.com.cn",
+      "http://www.hztraining.com",
+      "https://www.linuxprobe.com",
+      "http://www.uzzf.com",
+
+      //xyz
+      "https://wenku.baidu.com",
+      "https://yisharepdf.site",
+    ];
+    var addUrlBlacklist = [
+      "https://blog.csdn.net/weixin_34125592/article/details/90787885"];
+
+    var addUrlvideolist = [
+      "https://www.sounm.com/?url=",//https://www.sounm.com/
+      "https://www.administratorw.com/admin.php?url=",
+      "https://www.administratorw.com/video.php?url=",
+      "http://api.baiyug.vip/index.php?url=",//ad
+      "https://jx.618g.com/?url=",//ad
+      "http://www.zhmdy.top/index.php?zhm_jx=",
+      "https://jiexi.071811.cc/jx.php?url=",
+      "https://660e.com/?url=",
+    ];  
+    // https://www.socarchina.com/vip.htm
+    var addUrlvoicelist = [
+      "https://www.socarchina.com/vipmusic/?url="
+    ]
+    url = url.replace("https://http//", "http://").replace("https//", "")
+    //.replace("https://chrome//", "chrome://").replace('https://mijisou.com/url_proxy?proxyurl=http', 'http')//.replace('https://link.zhihu.com/?target=http%3A', 'http').replace('https://link.zhihu.com/?target=https%3A', 'https')
+    if(url.indexOf("//v.youku.com") != -1 || url.indexOf("//v.qq.com") != -1 || url.indexOf("//www.iqiyi.com") != -1){
+      return  addUrlvideolist[0]+url;
+    } else if(url.indexOf("//www.1ting.com") != -1 || url.indexOf("//music.migu.c") != -1 || url.indexOf("//y.qq.com") != -1 || url.indexOf("//www.qingting.fm") != -1){
+      return  addUrlvoicelist[0] + encodeURIComponent(url);
+      // || url.indexOf("http://www.kugou.com") != -1 || url.indexOf("http://www.kuwo.c") != -1 || url.indexOf("http://www.xiami.com") != -1 || url.indexOf("http://music.baidu.com") != -1 || url.indexOf("http://www.lizhi.fm") != -1 || url.indexOf("http://www.ximalaya.com") != -1 || url.indexOf("kg.qq.com") != -1 || url.indexOf("http://5sing.kugou.com") != -1
+      /*
+      一听：http://www.1ting.com/player/b6/player_357838.html
+
+      咪咕：http://music.migu.cn/v2/music/song/477803
+
+      ＱＱ：http://y.qq.com/n/yqq/song/002B2EAA3brD5b.html
+
+      蜻蜓：http://www.qingting.fm/channels/158696/programs/5266259
+
+      网易：http://music.163.com/#/song?id=25906124
+
+      酷狗：http://www.kugou.com/song/#hash=08228af3cb404e8a4e7e9871bf543ff6
+
+      酷我：http://www.kuwo.cn/yinyue/382425/
+
+      虾米：http://www.xiami.com/song/2113248
+
+      百度：http://music.baidu.com/song/266069
+
+      荔枝：http://www.lizhi.fm/1947925/2498707770886461446
+
+      喜马拉雅：http://www.ximalaya.com/51701370/sound/24755731
+
+      全民K歌（shareuid）：http://kg.qq.com/node/personal?uid=619a958c25283e88
+
+      全民K歌（shareid）：https://kg.qq.com/node/play?s=FA3h1gFhd6Vk7Ft4
+
+      5sing原创：http://5sing.kugou.com/yc/3082899.html
+
+      5sing翻唱：http://5sing.kugou.com/fc/14369766.html
+      */
+    } else if (url.indexOf("https%3A%2F%2F") != -1) {
+      index = url.indexOf("%3A%2F%2F");
+      return decodeURIComponent("https" + url.substr(index));
+    } else if (url.indexOf("http%3A%2F%2F") != -1) {
+      index = url.indexOf("%3A%2F%2F");
+      return decodeURIComponent("http" + url.substr(index));
+    } else if (url.indexOf("https%3A") != -1) {
+      index = url.indexOf("https%3A");
+      return decodeURIComponent(url.substr(index));
+    } else if (url.indexOf("http%3A") != -1) {
+      index = url.indexOf("http%3A");
+      return decodeURIComponent(url.substr(index));
+    } 
+    
+    addDomainBlacklist.forEach(function (value, index, array) {
+      var urldomain = url;
+      try {
+        urlobj = new URL(url);
+        urldomain = urlobj.host;
+      } catch (e) {
+      }
+
+      var valuedomain = value;
+      try {
+        valueobj = new URL(value);
+        valuedomain = valueobj.host;
+      } catch (e) {
+      }
+
+      if (urldomain == valuedomain) {
+        url = addUrlWhitelist[0];
+        return;
+      }
+    });
+    addUrlBlacklist.forEach(function (value, index, array) {
+      if (url.indexOf(value) != -1) {
+        url = addUrlWhitelist[0];
+        return;
+      }
+    });
+    console.log(url)
+
+    // 1. 返回 undefined，不跳转:
+    // return
+
+    // 2. 返回字符串，跳转到字符串所指的URL:
+    // return 'http://b.example.com/' 
+
+    // 3. 返回''或者false，请求被阻止:
+    // return ''
+    // return false
+    return url;
+  }
+
+
+
+
+
+
+
+</script>
 </html>

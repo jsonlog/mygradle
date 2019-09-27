@@ -19,6 +19,9 @@ cat words.txt | tr ' ' '\n' |sort| grep .| uniq -c | sort -r -n -k 1| awk '{prin
 
 echo ""
 
+awk '{for(i=1;i<=NF;i++) a[$i]++} END {for(k in a) print k,a[k]}' words.txt | sort -k2 -nr
+
+echo ""
 
 # 193
 awk '/^([0-9]{3}-|\([0-9]{3}\) )[0-9]{3}-[0-9]{4}$/' file193.txt
