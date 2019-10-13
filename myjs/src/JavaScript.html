@@ -387,10 +387,10 @@ obj.click();
 </body>
 <script>
 
-  console.log(owlRedirectorFilter("http://y.qq.com/n/yqq/song/002B2EAA3brD5b.html"))
-   console.log(owlRedirectorFilter("https://link.zhihu.com/?target=https%3A//link.jianshu.com/%3Ft%3Dhttps%3A//twitter.com/timberners_lee"))
-   console.log(owlRedirectorFilter("https://mijisou.com/url_proxy?proxyurl=http%3A//www.so.com/link%3Furl%3Dhttp%253A%252F%252Fwww.360kuai.com%252Fpc%252F989bbf71b2a9abcb8%253Fcota%253D3%2526kuai_so%253D1%2526sign%253D360_7bc3b157%2526refer_scene%253Dso_55%26q%3D%25E6%2596%25B0%25E9%2597%25BB%26ts%3D1569510529%26t%3D53fdd6417c9d84a4c745a17b8841fb9&token=27af8d927f81aeba45c0ebfba4174e638cb622d7151fc29974b1a8d346a86e34"))
-   console.log(owlRedirectorFilter("https://www.jianshu.com/go-wild?ac=2&url=http%3A%2F%2Fmaven.apache.org%2Fref%2F3.2.2%2Fmaven-repository-metadata%2Frepository-metadata.html"))
+  console.log(owlRedirectorFilter("https://v.sogou.com/v?query=%E5%A4%A7%E8%AF%9D%E8%A5%BF%E6%B8%B8&vrid=70053200"))
+  console.log(owlRedirectorFilter("https://link.zhihu.com/?target=https%3A//link.jianshu.com/%3Ft%3Dhttps%3A//twitter.com/timberners_lee"))
+  console.log(owlRedirectorFilter("https://mijisou.com/url_proxy?proxyurl=http%3A//www.so.com/link%3Furl%3Dhttp%253A%252F%252Fwww.360kuai.com%252Fpc%252F989bbf71b2a9abcb8%253Fcota%253D3%2526kuai_so%253D1%2526sign%253D360_7bc3b157%2526refer_scene%253Dso_55%26q%3D%25E6%2596%25B0%25E9%2597%25BB%26ts%3D1569510529%26t%3D53fdd6417c9d84a4c745a17b8841fb9&token=27af8d927f81aeba45c0ebfba4174e638cb622d7151fc29974b1a8d346a86e34"))
+  console.log(owlRedirectorFilter("https://www.jianshu.com/go-wild?ac=2&url=http%3A%2F%2Fmaven.apache.org%2Fref%2F3.2.2%2Fmaven-repository-metadata%2Frepository-metadata.html"))
   // http://maven.apache.org/ref/3.2.2/maven-repository-metadata/repository-metadata.html
   // /^https?:\/\/www\.jianshu\.com\/.*https?%3A%2F%2F/
   //https://link.zhihu.com/?target=https%3A//link.jianshu.com/%3Ft%3Dhttps%3A//twitter.com/timberners_lee
@@ -398,19 +398,27 @@ obj.click();
 
 
 
-
-
-    //copy start-----------------------------------------------------------------------------------------------
-    //copy start-----------------------------------------------------------------------------------------------
-    //copy start-----------------------------------------------------------------------------------------------
+  ///^http.*\.(htm|html|jsp|asp|aspx|[^\.]{8,})$/
+  ///^http.*(.[^(htm|html|jsp|asp|aspx)]|\.[a-z]*(htm|html|jsp|asp|aspx))$/
+  ///^http.*([^\.\w]|\.[a-z]*(htm|html|jsp|asp|aspx))$/
+  //copy start-----------------------------------------------------------------------------------------------
+  //copy start-----------------------------------------------------------------------------------------------
   function owlRedirectorFilter(url) {
     var addUrlWhitelist = [
       "https://jsonlog.github.io/myspringblog",
       "chrome://newtab",
       "",//block
     ];
-    if(url == addUrlWhitelist[0]) return url;
-    
+    if (url == addUrlWhitelist[0]) return url;
+    // 1. 返回 undefined，不跳转:
+    // return
+
+    // 2. 返回字符串，跳转到字符串所指的URL:
+    // return 'http://b.example.com/' 
+
+    // 3. 返回''或者false，请求被阻止:
+    // return ''
+    // return false
     var addDomainBlacklist = [
       //test
 
@@ -459,24 +467,26 @@ obj.click();
       "http://www.zhmdy.top/index.php?zhm_jx=",
       "https://jiexi.071811.cc/jx.php?url=",
       "https://660e.com/?url=",
-    ];  
-    // https://www.socarchina.com/vip.htm
+
+      // https://www.socarchina.com/vip.htm
+    ];
     var addUrlvoicelist = [
       "https://www.socarchina.com/vipmusic/?url="
     ]
-    url = url.replace("https://http//", "http://").replace("https//", "")
-    //.replace("https://chrome//", "chrome://").replace('https://mijisou.com/url_proxy?proxyurl=http', 'http')//.replace('https://link.zhihu.com/?target=http%3A', 'http').replace('https://link.zhihu.com/?target=https%3A', 'https')
-    if(url.indexOf("//v.youku.com") != -1 || url.indexOf("//v.qq.com") != -1 || url.indexOf("//www.iqiyi.com") != -1){
-      return  addUrlvideolist[0]+url;
-    } else if(url.indexOf("//www.1ting.com") != -1 || url.indexOf("//music.migu.c") != -1 || url.indexOf("//y.qq.com") != -1 || url.indexOf("//www.qingting.fm") != -1){
-      return  addUrlvoicelist[0] + encodeURIComponent(url);
+    url = url.replace("https://http//", "http://").replace("https//", "").replace("https://chrome//", "chrome://").replace('https://mijisou.com/url_proxy?proxyurl=http', 'http')//.replace('https://link.zhihu.com/?target=http%3A', 'http').replace('https://link.zhihu.com/?target=https%3A', 'https')
+    if (url.indexOf("//v.youku.com") != -1 || url.indexOf("//v.qq.com") != -1 || url.indexOf("iqiyi.com") != -1) {
+      if(url.indexOf(addUrlvideolist[0]) != -1) return url;
+      return addUrlvideolist[0] + url;
+    } else if (url.indexOf("//www.1ting.com") != -1 || url.indexOf("//music.migu.c") != -1 || url.indexOf("//y.qq.com") != -1 || url.indexOf("//www.qingting.fm") != -1) {
+      if(url.indexOf(addUrlvoicelist[0]) != -1) return url;
+      return addUrlvoicelist[0] + encodeURIComponent(url);
       // || url.indexOf("http://www.kugou.com") != -1 || url.indexOf("http://www.kuwo.c") != -1 || url.indexOf("http://www.xiami.com") != -1 || url.indexOf("http://music.baidu.com") != -1 || url.indexOf("http://www.lizhi.fm") != -1 || url.indexOf("http://www.ximalaya.com") != -1 || url.indexOf("kg.qq.com") != -1 || url.indexOf("http://5sing.kugou.com") != -1
       /*
       一听：http://www.1ting.com/player/b6/player_357838.html
 
       咪咕：http://music.migu.cn/v2/music/song/477803
 
-      ＱＱ：http://y.qq.com/n/yqq/song/002B2EAA3brD5b.html
+      ＱＱ：https://y.qq.com/n/yqq/song/002B2EAA3brD5b.html
 
       蜻蜓：http://www.qingting.fm/channels/158696/programs/5266259
 
@@ -515,7 +525,7 @@ obj.click();
       index = url.indexOf("http%3A");
       return decodeURIComponent(url.substr(index));
     } 
-    
+
     addDomainBlacklist.forEach(function (value, index, array) {
       var urldomain = url;
       try {
@@ -543,16 +553,6 @@ obj.click();
       }
     });
     console.log(url)
-
-    // 1. 返回 undefined，不跳转:
-    // return
-
-    // 2. 返回字符串，跳转到字符串所指的URL:
-    // return 'http://b.example.com/' 
-
-    // 3. 返回''或者false，请求被阻止:
-    // return ''
-    // return false
     return url;
   }
 
