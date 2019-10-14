@@ -214,5 +214,65 @@ public class staticClass {
 		String avatar = "http://cn.gravatar.com/avatar/"+emailMd5+"?s=128&d=identicon&r=PG";
 		return avatar;
 	}
-    
+ 
+    /**
+     * 测试字符串编码
+     * @param str
+     * @return
+     */
+    public static String getEncoding(String str) {    
+        String encode = "GB2312";    
+       try {    
+           if (str.equals(new String(str.getBytes(encode), encode))) {    
+                String s = encode;    
+               return s;    
+            }    
+        } catch (Exception exception) {    
+        }    
+        encode = "ISO-8859-1";
+       try {    
+           if (str.equals(new String(str.getBytes(encode), encode))) {    
+                String s1 = encode;    
+               return s1;    
+            }    
+        } catch (Exception exception1) {    
+        }    
+        encode = "UTF-8";    
+       try {    
+           if (str.equals(new String(str.getBytes(encode), encode))) {    
+                String s2 = encode;    
+               return s2;    
+            }    
+        } catch (Exception exception2) {    
+        }    
+        encode = "GBK";    
+       try {    
+           if (str.equals(new String(str.getBytes(encode), encode))) {    
+                String s3 = encode;    
+               return s3;    
+            }    
+        } catch (Exception exception3) {    
+        }    
+       return "";
+    }
+
+
+    /**  
+     * 将ISO-8859-1编码字符串转换UTF-8编码  
+     * @param param  
+     * @return  
+     */  
+    public static String toUTF8(String param) {  
+        if (param == null) {  
+            return null;  
+        } else {  
+            try {  
+                param = new String(param.getBytes("ISO-8859-1"), "UTF-8");  
+            } catch (java.io.UnsupportedEncodingException e) {  
+                e.printStackTrace();  
+                return param;  
+            }
+        }  
+        return param;  
+    }
 }
