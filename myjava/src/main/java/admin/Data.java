@@ -18,13 +18,13 @@ import user.UserInfo;
  * 
  */
 public class Data {
-	private String dataFilePath = "Data.data";// ���ݻ����ַ
+	private String dataFilePath = "Data.data";// 数据缓存地址
 
 	/**
-	 * Description�� �ӱ����ļ���ȡ���ݴ���UserInfo[] ����
+	 * Description： 从本地文件读取数据存入UserInfo[] 数据
 	 * 
 	 * @param userArray
-	 *            �����ݵ�����
+	 *            存数据的数组
 	 */
 	public void readeInfo(UserInfo[] userArray) {
 		File file = new File(dataFilePath);
@@ -61,10 +61,10 @@ public class Data {
 	}
 
 	/**
-	 * Description�� ���������Ϣ���뱾���ļ�
+	 * Description： 将数组的信息存入本地文件
 	 * 
 	 * @param userArry
-	 *            �����Ϣ������
+	 *            存放信息的数组
 	 */
 	public void writeInfo(UserInfo[] userArray) {
 		File file = new File(dataFilePath);
@@ -97,13 +97,13 @@ public class Data {
 	}
 
 	/**
-	 * Description: ����IDɾ���û�
+	 * Description: 根据ID删除用户
 	 * 
 	 * @param userArray
-	 *            ��ŵ����ݵ�����
+	 *            存放的数据的数组
 	 * @param ID
-	 *            Ҫɾ�����û�ID
-	 * @return ɾ���˷���true
+	 *            要删除的用户ID
+	 * @return 删除了返回true
 	 */
 	public boolean delUser(UserInfo[] userArray, String ID) {
 		for (int i = 0; userArray[i] != null; i++) {
@@ -118,11 +118,11 @@ public class Data {
 	}
 
 	/**
-	 * Description:����ID�޸����֣����룬 ���֣� �ȼ�
+	 * Description:根据ID修改名字，密码， 积分， 等级
 	 * 
 	 * @param userArray
 	 * @param ID
-	 * @return �ɹ�����True
+	 * @return 成功返回True
 	 */
 	public boolean updatUser(UserInfo[] userArray, String ID) {
 		String userName = null, userPassword = null;
@@ -132,13 +132,13 @@ public class Data {
 			if (userArray[i].getUserID().equals(ID)) {
 				show(userArray[i]);
 
-				System.out.println("�������޸ĵ�����:");
+				System.out.println("请输入修改的名字:");
 				userName = inputScanner.next();
-				System.out.println("�������޸ĵ�����:");
+				System.out.println("请输入修改的密码:");
 				userPassword = inputScanner.next();
-				System.out.println("������Ҫ�޸ĵĻ���:");
+				System.out.println("请输入要修改的积分:");
 				userScore = inputScanner.nextInt();
-				System.out.println("������Ҫ�޸ĵĵȼ�");
+				System.out.println("请输入要修改的等级");
 				userLevel = inputScanner.nextInt();
 				userArray[i].setUserName(userName);
 				userArray[i].setUserScore(userScore);
@@ -153,27 +153,27 @@ public class Data {
 	}
 
 	/**
-	 * Description�� ��ʾuser�û�����Ϣ
+	 * Description： 显示user用户的信息
 	 * 
 	 * @param user
 	 */
 	public void show(UserInfo user) {
 		if (user != null)
-			System.out.println("�û�����" + user.getUserName() + "\n�û�ID��"
-					+ user.getUserID() + "\n�û����룺" + user.getUserPassword()
-					+ "\n�û����֣�" + user.getUserScore() + "\n�û��ȼ���"
+			System.out.println("用户名：" + user.getUserName() + "\n用户ID："
+					+ user.getUserID() + "\n用户密码：" + user.getUserPassword()
+					+ "\n用户积分：" + user.getUserScore() + "\n用户等级："
 					+ user.getUserLevel());
 	}
 
 	/**
-	 * Description:��ʾ�����û���Ϣ
+	 * Description:显示所有用户信息
 	 */
 	public void showAll(UserInfo[] userArray) {
 		for (int i = 0; userArray[i] != null; i++) {
 			UserInfo user = userArray[i];
-			System.out.println("�û�����" + user.getUserName() + "\n�û�ID��"
-					+ user.getUserID() + "\n�û����룺" + user.getUserPassword()
-					+ "\n�û����֣�" + user.getUserScore() + "\n�û��ȼ���"
+			System.out.println("用户名：" + user.getUserName() + "\n用户ID："
+					+ user.getUserID() + "\n用户密码：" + user.getUserPassword()
+					+ "\n用户积分：" + user.getUserScore() + "\n用户等级："
 					+ user.getUserLevel());
 		}
 	}

@@ -4,29 +4,29 @@ import java.util.Scanner;
 
 public class Game {
 	Scanner input = new Scanner(System.in);
-	int choose1; // ÓÎÏ·ÓïÑÔÑ¡Ôñ
-	int choose2; // ÓÎÏ·Ä£Ê½Ñ¡Ôñ
-	int right = 0; // ¼ÇÂ¼ÕıÈ·µÄÊıÁ¿
-	int wrong = 0; // ¼ÇÂ¼´íÎóµÄÊıÁ¿
-	int rat = 0; // ËÙ¶È
-	int Drat = 0; // ÕıÈ·ÂÊ
+	int choose1; // æ¸¸æˆè¯­è¨€é€‰æ‹©
+	int choose2; // æ¸¸æˆæ¨¡å¼é€‰æ‹©
+	int right = 0; // è®°å½•æ­£ç¡®çš„æ•°é‡
+	int wrong = 0; // è®°å½•é”™è¯¯çš„æ•°é‡
+	int rat = 0; // é€Ÿåº¦
+	int Drat = 0; // æ­£ç¡®ç‡
 	boolean isTrue = true;
-	String strC = "ÎÒ¹úµÄÊ×¶¼ÔÚ±±¾©£¬ÄÇÀï·ç¾°ÓÅÃÀ£¬Îï²ú·á¸»£¬ÊÇ¸öºÃÍæµÄµØ·½£¬Ò²ÊÇÒ»×ùÃÀÀöµÄ³ÇÊĞ¡£";
+	String strC = "æˆ‘å›½çš„é¦–éƒ½åœ¨åŒ—äº¬ï¼Œé‚£é‡Œé£æ™¯ä¼˜ç¾ï¼Œç‰©äº§ä¸°å¯Œï¼Œæ˜¯ä¸ªå¥½ç©çš„åœ°æ–¹ï¼Œä¹Ÿæ˜¯ä¸€åº§ç¾ä¸½çš„åŸå¸‚ã€‚";
 	String strE = "Since I go to high school, I have to walk a very far distance, it always takes me half an hour to reach the school.";
 
-	// Menu m = new Menu(); //½Ó²Ëµ¥Àà
+	// Menu m = new Menu(); //æ¥èœå•ç±»
 	/**
-	 * ÓÎÏ·Ö÷²Ëµ¥
+	 * æ¸¸æˆä¸»èœå•
 	 */
 	public void gameMenu() {
 		while (isTrue) {
-			System.out.println("***********»¶Ó­À´µ½½ğÉ½´ò×ÖÓÎÏ·***************");
-			System.out.println("\t1¡¢ºº×ÖÓÎÏ·");
-			System.out.println("\t2¡¢Ó¢ÓïÓÎÏ·");
-			System.out.println("\t3¡¢·µ»ØÉÏÒ»¼¶");
-			System.out.println("\t0¡¢ÍË³öÏµÍ³");
+			System.out.println("***********æ¬¢è¿æ¥åˆ°é‡‘å±±æ‰“å­—æ¸¸æˆ***************");
+			System.out.println("\t1ã€æ±‰å­—æ¸¸æˆ");
+			System.out.println("\t2ã€è‹±è¯­æ¸¸æˆ");
+			System.out.println("\t3ã€è¿”å›ä¸Šä¸€çº§");
+			System.out.println("\t0ã€é€€å‡ºç³»ç»Ÿ");
 			System.out.println("****************************************");
-			System.out.print("ÇëÊäÈëÄúµÄÑ¡Ôñ(ÊäÈë0»òÈÎÒâÊı×Ö·µ»ØÉÏÒ»¼¶)£º");
+			System.out.print("è¯·è¾“å…¥æ‚¨çš„é€‰æ‹©(è¾“å…¥0æˆ–ä»»æ„æ•°å­—è¿”å›ä¸Šä¸€çº§)ï¼š");
 			choose1 = input.nextInt();
 			switch (choose1) {
 			case 1:
@@ -53,18 +53,18 @@ public class Game {
 	}
 
 	/**
-	 * ÏÔÊ¾ÓÎÏ·Ä£Ê½
+	 * æ˜¾ç¤ºæ¸¸æˆæ¨¡å¼
 	 */
 	public void showGameType(String s) {
 		Adventure c = new Adventure();
 		boolean flag = true;
 		while (flag) {
-			System.out.println("***********»¶Ó­À´µ½½ğÉ½´ò×ÖÓÎÏ·***************");
-			System.out.println("\t1¡¢´ò×ÖËÙ¶È²âÊÔ");
-			System.out.println("\t2¡¢Ã°ÏÕÄ£Ê½");
-			System.out.println("\t0¡¢·µ»ØÉÏÒ»¼¶");
+			System.out.println("***********æ¬¢è¿æ¥åˆ°é‡‘å±±æ‰“å­—æ¸¸æˆ***************");
+			System.out.println("\t1ã€æ‰“å­—é€Ÿåº¦æµ‹è¯•");
+			System.out.println("\t2ã€å†’é™©æ¨¡å¼");
+			System.out.println("\t0ã€è¿”å›ä¸Šä¸€çº§");
 			System.out.println("****************************************");
-			System.out.print("ÇëÊäÈëÄúµÄÑ¡Ôñ(ÊäÈë0»òÈÎÒâÊı×Ö·µ»ØÉÏÒ»¼¶)£º");
+			System.out.print("è¯·è¾“å…¥æ‚¨çš„é€‰æ‹©(è¾“å…¥0æˆ–ä»»æ„æ•°å­—è¿”å›ä¸Šä¸€çº§)ï¼š");
 			choose2 = input.nextInt();
 			if (choose2 == 1) {
 				LanguagePlayTest(s);
@@ -80,42 +80,42 @@ public class Game {
 	}
 
 	/**
-	 * ´ò×ÖËÙ¶È²âÊÔ
+	 * æ‰“å­—é€Ÿåº¦æµ‹è¯•
 	 */
 	public void LanguagePlayTest(String s) {
 
-		System.out.println("ÇëÊäÈëÏÂÃæÕâ¶Î»°£º");
+		System.out.println("è¯·è¾“å…¥ä¸‹é¢è¿™æ®µè¯ï¼š");
 		System.out.println(s);
-		long long1 = System.currentTimeMillis(); // ¿ªÊ¼Ê±¼ä
+		long long1 = System.currentTimeMillis(); // å¼€å§‹æ—¶é—´
 		String str1 = input.next();
-		long long2 = System.currentTimeMillis(); // ½áÊøÊ±¼ä
-		char[] ch1 = s.toCharArray(); // ½«Ô­×Ö·û´®×ª»¯³É×Ö·ûÊı×é
-		char[] ch2 = str1.toCharArray(); // ½«ÊäÈë×Ö·û´®×ª»¯³É×Ö·ûÊı×é
-		long time = long2 - long1; // ´ò×ÖÓÃÊ±
+		long long2 = System.currentTimeMillis(); // ç»“æŸæ—¶é—´
+		char[] ch1 = s.toCharArray(); // å°†åŸå­—ç¬¦ä¸²è½¬åŒ–æˆå­—ç¬¦æ•°ç»„
+		char[] ch2 = str1.toCharArray(); // å°†è¾“å…¥å­—ç¬¦ä¸²è½¬åŒ–æˆå­—ç¬¦æ•°ç»„
+		long time = long2 - long1; // æ‰“å­—ç”¨æ—¶
 		for (int i = 0; i < (ch2.length > ch1.length ? ch1.length : ch2.length); i++) { // ?
 																						// :
-																						// È¡Á½¸öÊı×éĞ¡µÄ·ÀÖ¹³öÏÖ¿ÕÖ¸ÕëÒì³£
+																						// å–ä¸¤ä¸ªæ•°ç»„å°çš„é˜²æ­¢å‡ºç°ç©ºæŒ‡é’ˆå¼‚å¸¸
 			if (ch1[i] == ch2[i]) {
-				right++; // ÕıÈ·µÄÊıÁ¿
+				right++; // æ­£ç¡®çš„æ•°é‡
 			} else {
-				wrong++; // ´íÎóµÄÊıÁ¿
+				wrong++; // é”™è¯¯çš„æ•°é‡
 			}
 		}
 		rat = (int) (ch2.length / (time / 1000) * 60);
 		Drat = right * 100 / ch2.length;
-		System.out.println("ÄúÊäÈëµÄÓÃÊ±ÊÇ£º" + time / 1000 + "Ãë" + time % 1000 / 10);
-		System.out.println("ÄúµÄÕıÈ·ÂÊÊÇ£º" + Drat + "%");
-		System.out.println("ÄúµÄËÙ¶ÈÊÇ£º" + rat + "×Ö/·Ö");
-		if (rat < 100 || Drat < 85) { // ²»¼°¸ñ£ºËÙ¶ÈĞ¡ÓÚ100m/s||×¼È·¶ÈĞ¡ÓÚ85%
-			System.out.println("ÄúÃ»ÓĞ¼°¸ñ£¬¼ÌĞøÅ¬Á¦Å¶~");
-		} else if ((rat >= 100 && rat < 110) && Drat >= 85) { // ¼°¸ñ£ºËÙ¶È´óÓÚµÈÓÚ100m/sĞ¡ÓÚ110m/s&&×¼È·¶È´óÓÚµÈÓÚ85%
-			System.out.println("¹§Ï²Äú¼°¸ñÁË~");
-		} else if ((rat >= 110 && rat < 130) && Drat >= 90) { // Á¼ºÃ£ºËÙ¶È´óÓÚµÈÓÚ110m/sĞ¡ÓÚ130m/s&&×¼È·¶È´óÓÚµÈÓÚ90%
-			System.out.println("³É¼¨Á¼ºÃ~¼ÌĞø¼ÓÓÍ°É£¡");
-		} else if ((rat >= 130 && rat < 150) && Drat >= 95) { // ÓÅĞã£ºËÙ¶È´óÓÚµÈÓÚ130m/sĞ¡ÓÚ150m/s&&×¼È·¶È´óÓÚµÈÓÚ95%
-			System.out.println("³É¼¨ÓÅĞã~fighting~");
-		} else if (rat >= 200 && Drat == 100) { // ³¬Éñ£ºËÙ¶È´óÓÚµÈÓÚ200m/s&&×¼È·¶ÈµÈÓÚ100%
-			System.out.println("ÍÛÈû~ÄúµÄËÙ¶È¶¼³¬ÉñÁË£¡");
+		System.out.println("æ‚¨è¾“å…¥çš„ç”¨æ—¶æ˜¯ï¼š" + time / 1000 + "ç§’" + time % 1000 / 10);
+		System.out.println("æ‚¨çš„æ­£ç¡®ç‡æ˜¯ï¼š" + Drat + "%");
+		System.out.println("æ‚¨çš„é€Ÿåº¦æ˜¯ï¼š" + rat + "å­—/åˆ†");
+		if (rat < 100 || Drat < 85) { // ä¸åŠæ ¼ï¼šé€Ÿåº¦å°äº100m/s||å‡†ç¡®åº¦å°äº85%
+			System.out.println("æ‚¨æ²¡æœ‰åŠæ ¼ï¼Œç»§ç»­åŠªåŠ›å“¦~");
+		} else if ((rat >= 100 && rat < 110) && Drat >= 85) { // åŠæ ¼ï¼šé€Ÿåº¦å¤§äºç­‰äº100m/så°äº110m/s&&å‡†ç¡®åº¦å¤§äºç­‰äº85%
+			System.out.println("æ­å–œæ‚¨åŠæ ¼äº†~");
+		} else if ((rat >= 110 && rat < 130) && Drat >= 90) { // è‰¯å¥½ï¼šé€Ÿåº¦å¤§äºç­‰äº110m/så°äº130m/s&&å‡†ç¡®åº¦å¤§äºç­‰äº90%
+			System.out.println("æˆç»©è‰¯å¥½~ç»§ç»­åŠ æ²¹å§ï¼");
+		} else if ((rat >= 130 && rat < 150) && Drat >= 95) { // ä¼˜ç§€ï¼šé€Ÿåº¦å¤§äºç­‰äº130m/så°äº150m/s&&å‡†ç¡®åº¦å¤§äºç­‰äº95%
+			System.out.println("æˆç»©ä¼˜ç§€~fighting~");
+		} else if (rat >= 200 && Drat == 100) { // è¶…ç¥ï¼šé€Ÿåº¦å¤§äºç­‰äº200m/s&&å‡†ç¡®åº¦ç­‰äº100%
+			System.out.println("å“‡å¡~æ‚¨çš„é€Ÿåº¦éƒ½è¶…ç¥äº†ï¼");
 		}
 
 	}

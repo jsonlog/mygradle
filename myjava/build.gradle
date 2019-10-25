@@ -6,7 +6,9 @@ targetCompatibility = '1.8'
 version = '1.0'
 
 apply plugin: 'application'
-mainClassName = 'com.util.hello'//public static void main(String[] args) {
+mainClassName = 'com.util.hello'
+// mainClassName = 'ui.test' //game
+//public static void main(String[] args) {
 
 // jar {
 //     manifest {
