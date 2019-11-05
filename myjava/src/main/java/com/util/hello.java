@@ -13,6 +13,7 @@ public class hello {
         common();
 
         //static
+        // Caldate.main(args);
         // filecode();
         // System.out.println(staticClass.getEncoding("锟斤拷锟"));
         // System.out.println(staticClass.toUTF8("中国"));
