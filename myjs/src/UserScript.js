@@ -11,6 +11,7 @@
 
 (function () {
     'use strict';
+    //document.location.href='http://www.google.com/search?q=cache:'+escape(document.location.href)
 
     var url = window.location.href;
     // url = "https://link.zhihu.com/?target=https%3A//link.jianshu.com/%3Ft%3Dhttps%3A//twitter.com/timberners_lee"
@@ -50,7 +51,7 @@
     var toast = new Toast();
     var redirect = owlRedirectorFilter(url, toast);
     if (redirect != null) {
-        window.location.href = redirect;
+        document.location.href = redirect;
         // window.open(redirect);
         toast.creatToast(redirect, 360000, 50);//在页面中间弹出
     }
