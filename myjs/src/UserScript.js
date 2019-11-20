@@ -1,6 +1,7 @@
 // ==UserScript==
 // @name         重定向
 // @namespace    http://tampermonkey.net/
+// @homepagae    https://raw.githack.com/jsonlog/mygradle/master/myjs/src/UserScript.js
 // @version      0.1
 // @description  try to take over the world!
 // @author       jsonlog
@@ -23,14 +24,19 @@
     }
     Toast.prototype = {
         create: function (message, time, top) {
-            var toastHtml = '<div class="tClass">' + message + '</div>';
-            // var toastHtml = '<textarea class="tClass">' + message + '</textarea>';
+            // var toastHtml = '<div class="tClass">' + message + '</div>';
+            var toastHtml = '<textarea class="tClass">' + message + '</textarea>';
             if (document.querySelector('.tClass')) return;
             document.body.insertAdjacentHTML('beforeend', toastHtml);
             document.querySelector('.tClass').style.display = "block";
             document.querySelector(".tClass").style.position = "fixed";
             document.querySelector('.tClass').style.top = top + "%";
             document.querySelector('.tClass').style.left = "50%";
+            document.querySelector('.tClass').select();
+            if (document.execCommand('copy')) {
+                document.execCommand('copy');
+                console.log('复制成功');
+            }
             setTimeout(function () {
                 if (document.querySelector('.tClass')) {
                     document.querySelector('.tClass').parentNode.removeChild(document.querySelector('.tClass'))
@@ -46,7 +52,7 @@
     if (redirect != null) {
         window.location.href = redirect;
         // window.open(redirect);
-        toast.creatToast(redirect, 1000, 50);//在页面中间弹出
+        toast.creatToast(redirect, 360000, 50);//在页面中间弹出
     }
     // else toast.creatToast(url, 1000, 90);//在页面底端弹出
 
@@ -56,7 +62,7 @@
 
         if (domain.host.indexOf("pan.baidu.com") != -1) return url.replace("baidu.com", "baiduwp.com");
         if (url == "https://www.baidu.com") return "https://www.baidu.com/?";
-        if (url == "https://www.zhihu.com") return "https://www.zhihu.com/explore";
+        if (url == "https://www.zhihu.com" || url == "https://www.zhihu.com/signin?next=%2F") return "https://www.zhihu.com/explore";
 
         var addUrlvideolist = [
             //http://app.baiyug.cn:2019/vip/?url=">百域学院</a>
@@ -97,7 +103,7 @@
         }
         var _3A2F2F = [
             "mail.qq.com",//https://mail.qq.com/cgi-bin/mail_spam?action=check_link&url=https://github.com/&mailid=Gg4Gb3cLBggAFV9eXENuT2VMVFBfVUxZYXAHcAB2fw5U&spam=0
-            // "mijisou.com",//"https://mijisou.com/url_proxy?proxyurl=http",
+            "mijisou.com",//"https://mijisou.com/url_proxy?proxyurl=http",
             "link.zhihu.com",//"https://link.zhihu.com/?target=http",
             "www.jianshu.com",//"https://www.jianshu.com/go-wild?ac=2&url="
         ]
@@ -124,8 +130,8 @@
             if (_3A2F2Findex != -1) return url;
             else {
                 // alert(url);
-                toast.creatToast(url, 1000, 10);//在页面上方弹出
-                copyRedirect(url);
+                toast.creatToast(url, 360000, 10);//在页面上方弹出
+                //copyRedirect(url);
             }
         }
         return null;
