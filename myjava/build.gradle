@@ -8,13 +8,8 @@ version = '1.0'
 apply plugin: 'application'
 mainClassName = 'com.util.hello'
 // mainClassName = 'ui.test' //game
-//public static void main(String[] args) {
-
-// jar {
-//     manifest {
-//         attributes 'Main-Class': 'com.util.hello'
-//     }
-// }
+//public static void main(String[] args) {System.out.println("\n");}
+//mkdir -p src/main/{java,resources,webapp} src/test/{java,resource}
 
 // jar {
 //     manifest {
