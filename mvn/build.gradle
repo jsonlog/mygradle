@@ -1,12 +1,12 @@
 // gradle init --type pom
-// gradle build
+// gradle install
 apply plugin: 'java'
 apply plugin: 'maven'
 
 
 group = 'com.101tec'
 version = '0.7-dev'
-sourceCompatibility = 1.6
+sourceCompatibility = 1.8
 
 
 // task writeNewPom << {
@@ -23,3 +23,10 @@ sourceCompatibility = 1.6
 //         }
 //     }.writeTo("$buildDir/pom.xml")
 // }
+
+task convert2Maven {
+    doLast {
+        file("$buildDir/poms/pom-default.xml").renameTo(file("$project.projectDir/pom.xml"))//rootDir
+    }
+}
+install.dependsOn(convert2Maven)
