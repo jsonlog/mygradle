@@ -8,6 +8,10 @@ import java.util.*;
 
 public class hello {
     public static void main(String[] args) {
+        String password = "eIW0Dnk69454e6nSwuspv9DmS201tQ0D";
+        String encode = Base64.getEncoder().encodeToString(password.getBytes());
+        System.out.println(encode);
+        System.out.println(new String(Base64.getDecoder().decode(encode)));
         System.out.print("Hello, it's: "); System.out.println(new Date());
         //common
         common();
