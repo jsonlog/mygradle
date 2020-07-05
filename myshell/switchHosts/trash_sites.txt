@@ -7030,7 +7030,7 @@
 127.0.0.1 blmsj.com
 127.0.0.1 blog.clusterenergia.com
 127.0.0.1 blog.com
-127.0.0.1 blog.csdn.net
+# 127.0.0.1 blog.csdn.net
 127.0.0.1 blog.fang.com
 127.0.0.1 blog.sina.com.cn
 127.0.0.1 blogspot.jp
