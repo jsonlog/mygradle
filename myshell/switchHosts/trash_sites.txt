@@ -6416,7 +6416,7 @@
 127.0.0.1 baidu018.ga
 127.0.0.1 baidu020.cf
 127.0.0.1 baidubanjia.com
-127.0.0.1 baiducontent.com
+# 127.0.0.1 baiducontent.com
 127.0.0.1 baiduer.com.cn
 127.0.0.1 baidumaoyi.com
 127.0.0.1 baiduosma.com
@@ -10199,7 +10199,7 @@
 127.0.0.1 jaz.u7bd.com
 127.0.0.1 jazdanion.com
 127.0.0.1 jb0001.com
-127.0.0.1 jb51.net
+# 127.0.0.1 jb51.net
 127.0.0.1 jbbkt.com
 127.0.0.1 jbbo8.com
 127.0.0.1 jbemt.top
