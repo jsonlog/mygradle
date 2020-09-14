@@ -13,6 +13,11 @@ namespace crud
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            bind();
+                //Employee employee = 
+                //List<Employee> employeeList = (from E in context.Employee
+                              //where E.Code.Contains("11")
+                              //select E).ToList();
 
         }
         /// <summary>
@@ -22,19 +27,14 @@ namespace crud
         /// <param name="e"></param>
         protected void bind()
         {
-            SqlConnection myConn = new SqlConnection("Data Source=WIN8;Initial Catalog=SqlDataTest01;Persist Security Info=True;User ID=sa;Password=123456");
-            myConn.Open();
-
-            string sqlStr = "select * from UserTable order by ID ";
-            SqlDataAdapter myDa = new SqlDataAdapter(sqlStr, myConn);
-            DataSet myDs = new DataSet();
-            myDa.Fill(myDs);
-            GridView2.DataSource = myDs;
-            GridView2.DataKeyNames = new string[] { "ID" };
-            GridView2.DataBind();
-            myDa.Dispose();
-            myDs.Dispose();
-            myConn.Close();
+            using (EmployeeDataContext context = new EmployeeDataContext())
+            {
+                //GridView2.DataSource = from E in context.Employee select E;
+                EmployeeDataContext employeeDataContext = new EmployeeDataContext();
+                GridView2.DataSource = employeeDataContext.Employee;
+                GridView2.DataKeyNames = new string[] { "ID" };
+                GridView2.DataBind();
+            }
         }
 
         //插入数据
@@ -60,36 +60,15 @@ namespace crud
         {
             if (this.TextBoxSelect.Text != "")       //判断输入框是否为空
             {
-                //与数据库进行连接
-                SqlConnection myConn = new SqlConnection("Data Source=WIN8;Initial Catalog=SqlDataTest01;Persist Security Info=True;User ID=sa;Password=123456");
-                myConn.Open();
-                //查询操作
-                string sqlStr = "select * from UserTable where UserName=@UserName";
-                SqlCommand myCmd = new SqlCommand(sqlStr, myConn);
-                myCmd.Parameters.Add("@UserName", SqlDbType.VarChar, 50).Value = this.TextBoxSelect.Text.Trim();
-                SqlDataAdapter myDa = new SqlDataAdapter(myCmd);
-                //将查询的结果添加到DataSet中
-                DataSet myDs = new DataSet();
-                myDa.Fill(myDs);
-                //在GridView中显示查询到的结果
-                if (myDs.Tables[0].Rows.Count > 0)
+
+                using (EmployeeDataContext context = new EmployeeDataContext())
                 {
-                    GridView2.DataSource = myDs;
+                    GridView2.DataSource = (from E in context.Employee where E.Code.Contains(this.TextBoxSelect.Text.Trim()) select E).ToList();
+                    GridView2.DataKeyNames = new string[] { "ID" };
                     GridView2.DataBind();
                 }
-                else
-                {
-                    Response.Write("<script>alert('查询结果为空')</script>");
-                    this.bind();
-                }
-                myDa.Dispose();
-                myDs.Dispose();
-                myConn.Close();
             }
-            else
-            {
-                Response.Write("<script>alert('请输入查询的用户名')</script>");
-            }
+
         }
 
         protected void GridView2_RowDeleting(object sender, GridViewDeleteEventArgs e)
@@ -98,15 +77,10 @@ namespace crud
             //获取删除字段所在行的关键字段的值
             int userid = Convert.ToInt32(GridView2.DataKeys[e.RowIndex].Value);
 
-            string sqlStr = "delete from UserTable where ID= " + userid;
 
-            SqlConnection myConn = new SqlConnection("Data Source=WIN8;Initial Catalog=SqlDataTest01;Persist Security Info=True;User ID=sa;Password=123456");
-            myConn.Open();
-            SqlCommand myCmd = new SqlCommand(sqlStr, myConn);
-            myCmd.ExecuteNonQuery();
-            myCmd.Dispose();
-            myConn.Close();
-            GridView2.EditIndex = -1;
+            EmployeeDataContext employeeDataContext = new EmployeeDataContext();
+            employeeDataContext.Employee.DeleteOnSubmit((from E in employeeDataContext.Employee where E.ID == userid select E).FirstOrDefault());
+            employeeDataContext.SubmitChanges();
             this.bind();
         }
 
