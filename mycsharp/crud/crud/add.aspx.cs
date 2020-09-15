@@ -14,11 +14,14 @@ namespace crud
         {
             string updateId = Server.HtmlEncode(Request.QueryString["ID"]);
             if (!String.IsNullOrEmpty(updateId)) { id = int.Parse(updateId); }
-            this.Code.Text = Server.HtmlEncode(Request.QueryString["Code"]);
-            this.Name.Text = Server.HtmlEncode(Request.QueryString["Name"]);
-            this.Age.Text = Server.HtmlEncode(Request.QueryString["Age"]);
-            this.Dept.Text = Server.HtmlEncode(Request.QueryString["Dept"]);
-            this.Memo.Text = Server.HtmlEncode(Request.QueryString["Memo"]);
+            if (this.Code.Text == "" && this.Name.Text == "" && this.Age.Text == "" && this.Dept.Text == "" && this.Memo.Text == "")
+            {
+                this.Code.Text = Server.HtmlEncode(Request.QueryString["Code"]);
+                this.Name.Text = Server.HtmlEncode(Request.QueryString["Name"]);
+                this.Age.Text = Server.HtmlEncode(Request.QueryString["Age"]);
+                this.Dept.Text = Server.HtmlEncode(Request.QueryString["Dept"]);
+                this.Memo.Text = Server.HtmlEncode(Request.QueryString["Memo"]);
+            }
         }
 
         protected void Button1_Click(object sender, EventArgs e)

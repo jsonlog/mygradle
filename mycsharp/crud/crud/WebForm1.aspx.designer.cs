@@ -33,6 +33,15 @@ namespace crud
         protected global::System.Web.UI.WebControls.TextBox TextBoxSelect;
 
         /// <summary>
+        /// TextBoxName 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox TextBoxName;
+
+        /// <summary>
         /// Btn_select 控件。
         /// </summary>
         /// <remarks>
@@ -42,15 +51,6 @@ namespace crud
         protected global::System.Web.UI.WebControls.Button Btn_select;
 
         /// <summary>
-        /// GridView2 控件。
-        /// </summary>
-        /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView GridView2;
-
-        /// <summary>
         /// Button2 控件。
         /// </summary>
         /// <remarks>
@@ -58,5 +58,14 @@ namespace crud
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button Button2;
+
+        /// <summary>
+        /// GridView2 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView GridView2;
     }
 }

@@ -9,12 +9,17 @@
 </head>
 <body>
     <form id="form1" runat="server">
-        <div>
-            编号:<asp:TextBox ID="Code" runat="server" Width="60px"></asp:TextBox>
+        <div style="height: 219px; width: 466px;left:40%;top:20%;position:absolute">
+            编号:<asp:TextBox ID="Code" runat="server" Width="100px"></asp:TextBox>
+            <br />
             名字:<asp:TextBox ID="Name" runat="server" Width="100px"></asp:TextBox>
+            <br />
             年龄:<asp:TextBox ID="Age" runat="server" Width="100px"></asp:TextBox>
+            <br />
             部门:<asp:TextBox ID="Dept" runat="server" Width="100px"></asp:TextBox>
+            <br />
             备注:<asp:TextBox ID="Memo" runat="server" Width="100px"></asp:TextBox>
+            <br />
             <asp:Button ID="Button1" runat="server" OnClick="Button1_Click" Text="保存" />
             <asp:Button ID="Cancel" runat="server" OnClick="Cancel_Click" Text="取消" />
         </div>
