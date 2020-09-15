@@ -40,20 +40,7 @@ namespace crud
         //插入数据
         protected void Button2_Click(object sender, EventArgs e)
         {
-            if (this.TextBoxID.Text != "" && this.TextBoxUserName.Text != "" && this.Password.Value != "" && Password.Value == Password_confirm.Value)
-            {
-                SqlConnection myConn = new SqlConnection("Data Source=WIN8;Initial Catalog=SqlDataTest01;Persist Security Info=True;User ID=sa;Password=123456");
-                myConn.Open();
-                string sqlStr = "insert into UserTable values ('" + this.TextBoxID.Text.Trim() + "','" + this.TextBoxUserName.Text.Trim() + "','" + this.Password.Value + "')";
-                SqlCommand myCmd = new SqlCommand(sqlStr, myConn);
-                myCmd.ExecuteNonQuery();
-                myConn.Close();
                 this.bind();
-            }
-            else
-            {
-                Response.Write("<script>alert('请重新输入')</script>");
-            }
         }
         //查询功能
         protected void Btn_select_Click(object sender, EventArgs e)
