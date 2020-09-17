@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json.Serialization;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -9,37 +10,49 @@ namespace crud
 {
     public partial class add : System.Web.UI.Page
     {
-        int id = -1;
+        
+        EmployeeDataContext context = new EmployeeDataContext();
         protected void Page_Load(object sender, EventArgs e)
         {
-            string updateId = Server.HtmlEncode(Request.QueryString["ID"]);
-            if (!String.IsNullOrEmpty(updateId)) { id = int.Parse(updateId); }
-            if (this.Code.Text == "" && this.Name.Text == "" && this.Age.Text == "" && this.Dept.Text == "" && this.Memo.Text == "")
+            if (!IsPostBack)
             {
-                this.Code.Text = Server.HtmlEncode(Request.QueryString["Code"]);
-                this.Name.Text = Server.HtmlEncode(Request.QueryString["Name"]);
-                this.Age.Text = Server.HtmlEncode(Request.QueryString["Age"]);
-                this.Dept.Text = Server.HtmlEncode(Request.QueryString["Dept"]);
-                this.Memo.Text = Server.HtmlEncode(Request.QueryString["Memo"]);
+                string updateId = Server.HtmlEncode(Request.QueryString["ID"]);
+                if (!String.IsNullOrEmpty(updateId))
+                {
+                    Employee entity = getEmployee(int.Parse(updateId));
+                    this.Code.Text = entity.Code;
+                    this.Name.Text = entity.Name;
+                    this.Age.Text = entity.Age?.ToString();
+                    this.Dept.Text = entity.Dept;
+                    this.Memo.Text = entity.Memo;
+                }
             }
+        }
+
+        protected Employee getEmployee(long ID)
+        {
+            return (from E in context.Employee where E.ID == ID select E).FirstOrDefault();
         }
 
         protected void Button1_Click(object sender, EventArgs e)
         {
-            string Code = this.Code.Text.Trim();
-            string Name = this.Name.Text.Trim();
-            string Age = this.Age.Text.Trim();
-            string Dept = this.Dept.Text.Trim();
-            string Memo = this.Memo.Text.Trim();
-            string baseUrl = "WebForm1.aspx?Code=" + Code + "&Name=" + Name + "&Age=" + Age + "&Dept=" + Dept + "&Memo=" + Memo;
-            if (id != -1)
+            Employee entity = new Employee();
+            string updateId = Server.HtmlEncode(Request.QueryString["ID"]);
+            if (!String.IsNullOrEmpty(updateId))
             {
-                Response.Redirect(baseUrl + "&ID=" + id);
+                entity =getEmployee(int.Parse(updateId));
             }
-            else
+            entity.Code = this.Code.Text.Trim();
+            entity.Name = this.Name.Text.Trim();
+            entity.Age = String.IsNullOrWhiteSpace(this.Age.Text.Trim())?(int?)null:int.Parse(this.Age.Text.Trim());
+            entity.Dept = this.Dept.Text.Trim();
+            entity.Memo = this.Memo.Text.Trim();
+            if (String.IsNullOrEmpty(updateId))
             {
-                Response.Redirect(baseUrl);
+                context.Employee.InsertOnSubmit(entity);
             }
+            context.SubmitChanges();
+            Response.Redirect("WebForm1");
         }
 
         protected void Cancel_Click(object sender, EventArgs e)
