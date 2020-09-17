@@ -24,40 +24,40 @@ namespace crud
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
 
         /// <summary>
-        /// TextBoxSelect 控件。
+        /// TbCode 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBoxSelect;
+        protected global::System.Web.UI.WebControls.TextBox TbCode;
 
         /// <summary>
-        /// TextBoxName 控件。
+        /// TbName 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBoxName;
+        protected global::System.Web.UI.WebControls.TextBox TbName;
 
         /// <summary>
-        /// Btn_select 控件。
+        /// BtnQuery 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Btn_select;
+        protected global::System.Web.UI.WebControls.Button BtnQuery;
 
         /// <summary>
-        /// Button2 控件。
+        /// BtnAdd 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Button2;
+        protected global::System.Web.UI.WebControls.Button BtnAdd;
 
         /// <summary>
         /// btnPrint 控件。
@@ -69,12 +69,12 @@ namespace crud
         protected global::System.Web.UI.WebControls.Button btnPrint;
 
         /// <summary>
-        /// GridView2 控件。
+        /// GridView 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView GridView2;
+        protected global::System.Web.UI.WebControls.GridView GridView;
     }
 }

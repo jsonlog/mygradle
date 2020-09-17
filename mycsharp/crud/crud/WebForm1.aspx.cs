@@ -21,9 +21,9 @@ namespace crud
         }
         protected void bind()
         {
-            GridView2.DataSource = getEmployeeList().ToList();
-            GridView2.DataKeyNames = new string[] { "ID" };
-            GridView2.DataBind();
+            GridView.DataSource = getEmployeeList().ToList();
+            GridView.DataKeyNames = new string[] { "ID" };
+            GridView.DataBind();
         }
 
         protected Employee getEmployee(long ID)
@@ -33,30 +33,30 @@ namespace crud
 
         protected IQueryable<Employee> getEmployeeList()
         {
-            var query = from E in context.Employee where E.Name.Contains(this.TextBoxName.Text.Trim()) select E; //IEnumerable
-            query = query.Where(E => E.Code.Contains(this.TextBoxSelect.Text.Trim()));
+            var query = from E in context.Employee where E.Name.Contains(this.TbName.Text.Trim()) select E; //IEnumerable
+            query = query.Where(E => E.Code.Contains(this.TbCode.Text.Trim()));
             //IQueryable<Employee> query = from E in context.Employee where E.Name.Contains(this.TextBoxName.Text.Trim()) && E.Code.Contains(this.TextBoxSelect.Text.Trim()) select E;
             return query;
         }
 
-        protected void Button2_Click(object sender, EventArgs e)
+        protected void BtnAdd_Click(object sender, EventArgs e)
         {
             Response.Redirect("add.aspx");
         }
-        protected void Btn_select_Click(object sender, EventArgs e)
+        protected void BtnQuery_Click(object sender, EventArgs e)
         {
             bind();
         }
 
-        protected void GridView2_RowDeleting(object sender, GridViewDeleteEventArgs e)
+        protected void GridView_RowDeleting(object sender, GridViewDeleteEventArgs e)
         {
-            int id = Convert.ToInt32(GridView2.DataKeys[e.RowIndex].Value);
+            int id = Convert.ToInt32(GridView.DataKeys[e.RowIndex].Value);
             context.Employee.DeleteOnSubmit(getEmployee(id));
             context.SubmitChanges();
             this.bind();
         }
 
-        protected void GridView2_RowDataBound(object sender, GridViewRowEventArgs e)
+        protected void GridView_RowDataBound(object sender, GridViewRowEventArgs e)
         {
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
@@ -64,9 +64,9 @@ namespace crud
                 //((LinkButton)e.Row.Cells[0].Controls[0]).Attributes.Add("onclick", "javascript:return confirm('确认删除：\"" + e.Row.Cells[1].Text + "\"吗?')");
             }
         }
-        protected void GridView2_RowEditing(object sender, GridViewEditEventArgs e)
+        protected void GridView_RowEditing(object sender, GridViewEditEventArgs e)
         {
-            int id = Convert.ToInt32(GridView2.DataKeys[e.NewEditIndex].Value);
+            int id = Convert.ToInt32(GridView.DataKeys[e.NewEditIndex].Value);
             Response.Redirect("add.aspx?ID=" + id);
         }
 

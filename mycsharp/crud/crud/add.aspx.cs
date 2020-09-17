@@ -20,11 +20,11 @@ namespace crud
                 if (!String.IsNullOrEmpty(updateId))
                 {
                     Employee entity = getEmployee(int.Parse(updateId));
-                    this.Code.Text = entity.Code;
-                    this.Name.Text = entity.Name;
-                    this.Age.Text = entity.Age?.ToString();
-                    this.Dept.Text = entity.Dept;
-                    this.Memo.Text = entity.Memo;
+                    this.inCode.Text = entity.Code;
+                    this.inName.Text = entity.Name;
+                    this.inAge.Text = entity.Age?.ToString();
+                    this.inDept.Text = entity.Dept;
+                    this.inMemo.Text = entity.Memo;
                 }
             }
         }
@@ -42,11 +42,11 @@ namespace crud
             {
                 entity =getEmployee(int.Parse(updateId));
             }
-            entity.Code = this.Code.Text.Trim();
-            entity.Name = this.Name.Text.Trim();
-            entity.Age = String.IsNullOrWhiteSpace(this.Age.Text.Trim())?(int?)null:int.Parse(this.Age.Text.Trim());
-            entity.Dept = this.Dept.Text.Trim();
-            entity.Memo = this.Memo.Text.Trim();
+            entity.Code = this.inCode.Text.Trim();
+            entity.Name = this.inName.Text.Trim();
+            entity.Age = String.IsNullOrWhiteSpace(this.inAge.Text.Trim())?(int?)null:int.Parse(this.inAge.Text.Trim());
+            entity.Dept = this.inDept.Text.Trim();
+            entity.Memo = this.inMemo.Text.Trim();
             if (String.IsNullOrEmpty(updateId))
             {
                 context.Employee.InsertOnSubmit(entity);
